@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PointsOfInterestRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,14 @@ class PointsOfInterest
 
     #[ORM\Column(length: 150, nullable: true)]
     private ?string $image = null;
+
+    #[ORM\OneToMany(mappedBy: 'points_of_interest', targetEntity: Planet::class)]
+    private Collection $planets;
+
+    public function __construct()
+    {
+        $this->planets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +70,36 @@ class PointsOfInterest
     public function setImage(?string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Planet>
+     */
+    public function getPlanets(): Collection
+    {
+        return $this->planets;
+    }
+
+    public function addPlanet(Planet $planet): static
+    {
+        if (!$this->planets->contains($planet)) {
+            $this->planets->add($planet);
+            $planet->setPointsOfInterest($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanet(Planet $planet): static
+    {
+        if ($this->planets->removeElement($planet)) {
+            // set the owning side to null (unless already changed)
+            if ($planet->getPointsOfInterest() === $this) {
+                $planet->setPointsOfInterest(null);
+            }
+        }
 
         return $this;
     }

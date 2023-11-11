@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AccommodationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,6 +30,14 @@ class Accommodation
 
     #[ORM\Column(length: 150, nullable: true)]
     private ?string $image = null;
+
+    #[ORM\OneToMany(mappedBy: 'accommodation', targetEntity: Stay::class)]
+    private Collection $stays;
+
+    public function __construct()
+    {
+        $this->stays = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +100,36 @@ class Accommodation
     public function setImage(?string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Stay>
+     */
+    public function getStays(): Collection
+    {
+        return $this->stays;
+    }
+
+    public function addStay(Stay $stay): static
+    {
+        if (!$this->stays->contains($stay)) {
+            $this->stays->add($stay);
+            $stay->setAccommodation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStay(Stay $stay): static
+    {
+        if ($this->stays->removeElement($stay)) {
+            // set the owning side to null (unless already changed)
+            if ($stay->getAccommodation() === $this) {
+                $stay->setAccommodation(null);
+            }
+        }
 
         return $this;
     }

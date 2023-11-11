@@ -32,6 +32,18 @@ class Stay
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $total_amount = null;
 
+    #[ORM\ManyToOne(inversedBy: 'stays')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?ExtraActivities $extra_activities = null;
+
+    #[ORM\ManyToOne(inversedBy: 'stays')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Accommodation $accommodation = null;
+
+    #[ORM\ManyToOne(inversedBy: 'stays')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +117,42 @@ class Stay
     public function setTotalAmount(string $total_amount): static
     {
         $this->total_amount = $total_amount;
+
+        return $this;
+    }
+
+    public function getExtraActivities(): ?ExtraActivities
+    {
+        return $this->extra_activities;
+    }
+
+    public function setExtraActivities(?ExtraActivities $extra_activities): static
+    {
+        $this->extra_activities = $extra_activities;
+
+        return $this;
+    }
+
+    public function getAccommodation(): ?Accommodation
+    {
+        return $this->accommodation;
+    }
+
+    public function setAccommodation(?Accommodation $accommodation): static
+    {
+        $this->accommodation = $accommodation;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -26,6 +26,14 @@ class Planet
     #[ORM\Column(length: 150, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'planets')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PlanetCharacteristics $planet_characteristics = null;
+
+    #[ORM\ManyToOne(inversedBy: 'planets')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PointsOfInterest $points_of_interest = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +83,30 @@ class Planet
     public function setImage(?string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getPlanetCharacteristics(): ?PlanetCharacteristics
+    {
+        return $this->planet_characteristics;
+    }
+
+    public function setPlanetCharacteristics(?PlanetCharacteristics $planet_characteristics): static
+    {
+        $this->planet_characteristics = $planet_characteristics;
+
+        return $this;
+    }
+
+    public function getPointsOfInterest(): ?PointsOfInterest
+    {
+        return $this->points_of_interest;
+    }
+
+    public function setPointsOfInterest(?PointsOfInterest $points_of_interest): static
+    {
+        $this->points_of_interest = $points_of_interest;
 
         return $this;
     }

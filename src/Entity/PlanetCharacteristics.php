@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlanetCharacteristicsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlanetCharacteristicsRepository::class)]
@@ -72,6 +74,14 @@ class PlanetCharacteristics
 
     #[ORM\Column(length: 10)]
     private ?string $dioxygen = null;
+
+    #[ORM\OneToMany(mappedBy: 'planet_characteristics', targetEntity: Planet::class)]
+    private Collection $planets;
+
+    public function __construct()
+    {
+        $this->planets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -314,6 +324,36 @@ class PlanetCharacteristics
     public function setDioxygen(string $dioxygen): static
     {
         $this->dioxygen = $dioxygen;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Planet>
+     */
+    public function getPlanets(): Collection
+    {
+        return $this->planets;
+    }
+
+    public function addPlanet(Planet $planet): static
+    {
+        if (!$this->planets->contains($planet)) {
+            $this->planets->add($planet);
+            $planet->setPlanetCharacteristics($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanet(Planet $planet): static
+    {
+        if ($this->planets->removeElement($planet)) {
+            // set the owning side to null (unless already changed)
+            if ($planet->getPlanetCharacteristics() === $this) {
+                $planet->setPlanetCharacteristics(null);
+            }
+        }
 
         return $this;
     }
