@@ -1,0 +1,88 @@
+{% extends 'home/index.html.twig' %}
+
+{% block titleHome %}
+
+<div class="homeTitle">
+    <h1 id="slogan2">
+        <span>YOUR</span>
+        <span>PERSONALIZED</span>
+        <span>SPACE JOURNEY</span>
+    </h1>
+    <h1 id="slogan1">
+        <span>YOUR</span>
+        <span>PERSONALIZED</span>
+        <span>SPACE JOURNEY</span>
+    </h1>
+</div>
+
+<style>
+    body {
+    background-color: rgb(44, 44, 44);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.homeTitle {
+    z-index: 9;
+    text-align: center;
+    position: absolute;
+}
+
+#slogan1, #slogan2 {
+    text-transform: uppercase;
+    color: white;
+    font-size: 60px;
+    font-family: 'Audiowide', cursive;
+    letter-spacing: 5px;
+    font-weight: 100;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+#slogan2 {
+    top: calc(50% - 4px);
+    left: calc(50% - 4px);
+    color: #ff00ff;
+    text-shadow: 8px 8px 0px #00aaff;
+}
+
+#slogan1 span,
+#slogan2 span {
+    display: block;
+}
+
+@media (max-width: 700px) {
+    #slogan1, #slogan2 {
+        font-size: 22px;
+    }
+    
+    #slogan2 {
+        top: calc(50% - 2px);
+        left: calc(50% - 2px);
+        text-shadow: 4px 4px 0px #00aaff;
+    }
+}
+
+@media (max-width: 500px) {
+    #slogan1, #slogan2 {
+        font-size: 15px;
+    }
+    
+    #slogan2 {
+        top: calc(50% - 1px);
+        left: calc(50% - 1px);
+        text-shadow: 2px 2px 0px #00aaff;
+    }
+}
+
+</style>
+{% endblock %}
+

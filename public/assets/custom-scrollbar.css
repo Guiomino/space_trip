@@ -1,0 +1,26 @@
+/* public/assets/css/custom-scrollbar.css */
+
+/* Pour WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #00071F;
+}
+
+
+
+
+/* Pour Edge et Internet Explorer 11 (la poignée) */
+/* Assurez-vous d'avoir une version récente de Visual Studio Code pour une coloration syntaxique correcte. */
+*::-webkit-scrollbar-thumb:vertical {
+    background-color: #041446;
+    border-radius: 6px;
+    border: 2px solid #00071F;
+}
+
+/* Cacher la poignée sur Edge et Internet Explorer 11 */
+*::-webkit-scrollbar-thumb:vertical:active {
+    background-color: transparent;
+}

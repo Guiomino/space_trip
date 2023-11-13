@@ -1,0 +1,466 @@
+{% extends 'base.html.twig' %}
+
+{% block navbar %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<div class="NavbarContainer">
+    <div class="burger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <nav class="navbar">
+        <div class="logo"><img id="logoDesktop" src="{{ asset('img/logoNavbarDesktop.svg') }}" alt="logo SpaceTrip">
+            <img id="logoMobile" src="{{ asset('img/logoNavbarMobile.svg') }}" alt="logo SpaceTrip"></div>
+        <div class="separator"></div>
+        <div id="menuTitle">MENU</div>
+        <div class="main-menu">
+            <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-map-marker-alt" title="RESORTS"></i><p class="hiddenMainLink">RESORTS</p><i
+                    class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu keep-open"><p>RESORTS</p> <div class="separator"></div>
+                <a href="#"><i class="far fa-dot-circle"></i>Eclipse of Marineris</a>
+                <a href="#"><i class="far fa-dot-circle"></i>Luminescent Labyrinth</a>
+                <a href="#"><i class="far fa-dot-circle"></i>Glacial Symphony</a>
+                <a href="#"><i class="far fa-dot-circle"></i>Aurora Ascendance</a>
+                <a href="#"><i class="far fa-dot-circle"></i>Echoes of Eos</i></a>
+                <a href="#"><i class="far fa-dot-circle"></i>Sands of Serenity</a>
+                <a href="#"><i class="far fa-dot-circle"></i>Nocturnal Enigma</a>
+                <a href="#"><i class="far fa-dot-circle"></i>Frost Ballet</a>
+            </div>
+
+            <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-list" title="INFORMATIONS"></i><p class="hiddenMainLink">INFORMATIONS</p><i
+                    class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu keep-open"><p>INFORMATIONS</p> <div class="separator"></div>
+                <a href="#"><i class="fas fa-layer-group"></i>EXTRA PROGRAMS</a>
+                <a href="#"><i class="fas fa-compass"></i>POINTS OF INTEREST</a>
+                <a href="#"><i class="fas fa-file"></i>DESCRIPTION</a>
+                <a href="#"><i class="fas fa-list-ul"></i>CHARACTERISTICS</a>
+                <a href="#"><i class="fas fa-truck-monster"></i>MEANS OF TRANSPORT</a>
+                <a href="#"><i class="fas fa-exclamation-triangle"></i>PRECAUTION</a>
+            </div>
+
+            <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-calendar-check" title="RESERVATION"></i><p class="hiddenMainLink">RESERVATION</p><i
+                    class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu keep-open"><p>RESERVATION</p> <div class="separator"></div>
+                <a href="#"><i class="fas fa-bed"></i>TYPE OF ACCOMODATION</a>
+                <a href="#"><i class="fas fa-dollar-sign"></i>PRICE AND PACKAGES</a>
+                <a href="#"><i class="fas fa-calendar-alt"></i>AVAILABILITY CALENDAR</a>
+                <a href="#"><i class="fas fa-clock"></i>LENGTH OF STAY</a>
+            </div>
+
+            <a class="parent-link no-chevron" href="#"><i class="fas fa-info-circle" title="OUR VISION"></i><p class="hiddenMainLink">OUR VISION</p></a>
+            <a class="parent-link no-chevron" href="#"><i class="fas fa-question-circle" title="FAQ"></i><p class="hiddenMainLink">FAQ</p></a>
+        </div>
+        <div class="separator"></div>
+        <div class="secondary-menu">
+            <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-user-circle" title="USER PROFILE"></i><p class="hiddenMainLink">USER PROFILE</p><i
+                    class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu keep-open"><p>USER PROFILE</p> <div class="separator"></div>
+                <a href="#"><i class="fas fa-sign-in-alt"></i>LOGIN</a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i>DISCONNECTION</a>
+                <a href="#"><i class="fas fa-user-plus"></i>REGISTER</a>
+            </div>
+
+            <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-share-alt" title="SOCIALE NETWORK"></i><p class="hiddenMainLink">SOCIAL NETWORK</p><i
+                    class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu keep-open"><p>SOCIAL NETWORK</p> <div class="separator"></div>
+                <a href="#"><i class="fab fa-youtube"></i>YOUTUBE</a>
+                <a href="#"><i class="fab fa-instagram"></i>INSTAGRAM</a>
+                <a href="#"><i class="fab fa-facebook"></i>FACEBOOK</a>
+                <a href="#"><i class="fab fa-reddit"></i>REDDIT</a>
+                <a href="#"><i class="fab fa-twitter"></i>TWITTER</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    /* background-color: rgb(2, 16, 66); */
+}
+
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////// */
+.NavbarContainer {
+    z-index: 9999;
+    top: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 9999;
+    margin: 20px;
+    transition: 0.3s;
+}
+
+.bar {
+    background-color: #ff3300;
+    height: 2px;
+    margin: 2px 0;
+    transition: transform 0.3s ease;
+}
+
+
+.navbar {
+    background: radial-gradient(circle at right bottom, #ffffff00, #ffffff15);
+    background-position: right bottom 20%;
+    background-size: 100% 150%;
+    position: absolute;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+    z-index: 9998;
+    transition: left 0.3s ease;
+    border-radius: 4px;
+    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    -ms-backdrop-filter: blur(10px);
+    -o-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.navbar.show {
+    left: 0;
+}
+
+
+.logo {
+    color: black;
+    font-size: 18px;
+    margin: 60px 0 30px 0;
+    pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#logoMobile {
+    display: none;
+}
+
+
+.separator {
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    margin: 10px 0;
+}
+
+#menuTitle {
+    color: #ffffff55;
+    font-weight: 500;
+    font-size: 10px;
+}
+
+.main-menu a,
+.secondary-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    position: relative;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.5s;
+    margin: 0 -15px;
+    border: 1px solid #ffffff00;
+    display: flex;
+    align-items: center;
+    box-shadow: -10px 10px 20px 5px #ff002200 inset;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+
+.main-menu a::after,
+.secondary-menu a::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    transition: width 0.5s;
+    background-color: #ff3300;
+    box-shadow: -20px 10px 20px 5px #ff0022 inset;
+}
+
+
+.main-menu a:hover::after,
+.secondary-menu a:hover::after {
+    width: 100%;
+}
+
+.main-menu a i,
+.secondary-menu a i {
+    margin-right: 15px;
+    color: #ff3300;
+}
+
+.main-menu a:hover i,
+.secondary-menu a:hover i {
+    color: white;
+    transition: 0.5s;
+}
+
+.main-menu a:not(:hover) i,
+.secondary-menu a:not(:hover) i {
+    transition: 1s;
+}
+
+
+/* ////////////////////////////////////////////////////////////////////////////////// */
+.main-menu a:hover,
+.secondary-menu a:hover {
+    /* background-color: #ff3300; */
+    /* box-shadow: -20px 10px 20px 5px #ff0022 inset; */
+    border: 1px solid #ffffff44;
+}
+
+.main-menu a:not(:hover),
+.secondary-menu a:not(:hover) {
+    transition: 1s;
+}
+
+
+.dropdown-toggle i {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+
+
+.dropdown-menu {
+    display: none;
+    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    -ms-backdrop-filter: blur(10px);
+    -o-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: radial-gradient(circle at left bottom, #00071Faa, #00071Fff);
+    background-position: left bottom 20%;
+    background-size: 100% 150%;
+    position: absolute;
+    /* height: 431px; */
+    height: 100vh;
+    top: 168px;
+    left: 100%;
+    border-top: 1px solid #ffffff55;
+    box-shadow: 0px 0px 20px #00000055;
+    border-radius: 4px;
+}
+
+.dropdown-menu p {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 900;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.parent-link:hover+.dropdown-menu {
+    display: block;
+}
+
+
+
+/* ////////////////////////////////////////////////////////////////////////////////// */
+
+.dropdown-menu a::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    transition: width 0.5s;
+    background-color: #0073ff;
+    box-shadow: -20px 10px 20px 5px #0033ff inset;
+}
+
+
+.dropdown-menu a:hover::after {
+    width: 100%;
+}
+
+
+.dropdown-menu a {
+    display: block;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    text-decoration: none;
+    margin: auto;
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    /* background-color: #0073ff;
+    box-shadow: -20px 10px 20px 5px #0033ff inset; */
+    border: 1px solid #ffffff44;
+}
+
+.secondary-menu {
+    margin-top: auto;
+}
+
+.fa-chevron-down {
+    position: absolute;
+    right: 1px;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.open {
+    transform: rotate(-90deg);
+}
+
+
+.parent-link:hover i.fa-chevron-down {
+    transform: rotate(-90deg);
+
+}
+
+.parent-link:hover .dropdown-menu {
+    display: block;
+}
+
+
+.no-chevron {
+    justify-content: flex-start;
+}
+
+.no-chevron i {
+    margin-left: 4px;
+}
+
+
+
+
+/* ////////////////////////// MEDIA QUERY ////////////////////////// */
+@media only screen and (max-width: 600px) {
+
+    .navbar {
+        height: 100%;
+        width: 80px;
+    }
+
+    #logoDesktop {
+        display: none;
+    }
+
+    #logoMobile {
+        display: block;
+    }
+
+    #menuTitle {
+        text-align: center;
+    }
+
+    .hiddenMainLink,
+    .fa-chevron-down {
+        display: none;
+    }
+
+    .main-menu,
+    .secondary-menu {
+        width: 100%;
+    }
+
+    .parent-link i {
+        margin-left: 18px;
+    }
+
+}
+</style>
+
+
+<script>
+    const burgerMenu = document.querySelector('.burger-menu');
+const navbar = document.querySelector('.navbar');
+const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+let isNavbarOpen = false;
+
+// Fonction pour fermer la navbar
+function closeNavbar() {
+    isNavbarOpen = false;
+    navbar.classList.remove('show');
+    burgerMenu.classList.remove('open');
+}
+
+burgerMenu.addEventListener('click', () => {
+    isNavbarOpen = !isNavbarOpen;
+    if (isNavbarOpen) {
+        navbar.classList.add('show');
+    } else {
+        navbar.classList.remove('show');
+    }
+    burgerMenu.classList.toggle('open');
+});
+
+dropdownToggles.forEach((toggle) => {
+    let timeoutId;
+  
+    toggle.addEventListener('mouseenter', () => {
+        clearTimeout(timeoutId);
+        const dropdownMenu = toggle.nextElementSibling;
+        dropdownMenu.style.display = 'block';
+    });
+
+    toggle.addEventListener('mouseleave', () => {
+        const dropdownMenu = toggle.nextElementSibling;
+        timeoutId = setTimeout(() => {
+            dropdownMenu.style.display = 'none';
+        }, 0);
+    });
+  
+    toggle.nextElementSibling.addEventListener('mouseenter', () => {
+        clearTimeout(timeoutId);
+    });
+
+    toggle.nextElementSibling.addEventListener('mouseleave', () => {
+        const dropdownMenu = toggle.nextElementSibling;
+        dropdownMenu.style.display = 'none';
+    });
+});
+
+// Écouteur d'événement pour fermer la navbar lorsque l'utilisateur clique en dehors
+document.addEventListener('click', (event) => {
+    if (isNavbarOpen && !navbar.contains(event.target) && !burgerMenu.contains(event.target)) {
+        closeNavbar();
+    }
+});
+
+</script>
+{% endblock %}
