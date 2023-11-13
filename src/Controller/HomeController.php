@@ -11,8 +11,21 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(): Response
     {
+        $imagePaths = [
+            'AuroraAscendance.jpg',
+            'EchoesOfEos.jpg',
+            'EclipseOfMarineris.jpg',
+            'FrostBallet.jpg',
+            'GlacialSymphony.jpg',
+            'LuminescentLabyrinth.jpg',
+            'NocturnalEnigma.jpg',
+            'SandsOfSerenity.jpg',
+        ];
+
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'imagePaths' => $imagePaths,
         ]);
     }
 }

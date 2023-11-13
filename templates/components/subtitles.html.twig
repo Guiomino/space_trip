@@ -1,0 +1,66 @@
+{# templates/components/subtitles.html.twig #}
+
+
+{% block subtitles %}
+
+<div class="subtitlesContainer">
+    <div class="pictoAndSubtitle">
+        <div class="picto"><i class="fas fa-map-marker-alt"></i></div>
+        <h3> Choose one of our 8 RESORTS :</h3>
+    </div>
+
+    <div class="separateSubtitles"></div>
+
+    <div class="underSubtitles">to embark on a unique journey that will live forever in your memories</div>
+
+</div>
+
+
+
+<style>
+    .subtitlesContainer {
+        width: 80%;
+        max-width: 1000px;
+        margin: auto;
+        margin-top: 80px;
+        left: auto;
+        right: auto;
+    }
+
+    .pictoAndSubtitle {
+        display: flex;
+        align-items: center;
+    }
+
+    .picto {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 10px;
+        margin-right: 10px;
+        background: linear-gradient(to top right, #F33A00, #F3002C);
+        border-radius: 2px;
+    }
+
+    .pictoAndSubtitle h3 {
+        font-size: 20px;
+        color: white;
+    }
+
+    .separateSubtitles {
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .underSubtitles {
+        color: white;
+        font-size: 18px;
+    }
+</style>
+
+{% endblock %}

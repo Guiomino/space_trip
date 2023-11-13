@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
 </head>
+
+<div class="headerNavbar">
 
 <div class="NavbarContainer">
     <div class="burger-menu">
@@ -79,7 +81,7 @@
         </div>
     </nav>
 </div>
-
+</div>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
@@ -97,6 +99,14 @@ body {
 }
 
 
+.headerNavbar {
+    z-index: 9999;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to bottom, #00071F, #00071F00);
+    position: fixed;
+    top: 0;
+}
 /* ///////////////////////////////////////////////////////////////////////////////////////////// */
 .NavbarContainer {
     z-index: 9999;
