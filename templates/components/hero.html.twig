@@ -42,8 +42,8 @@
 
     {% block button %}
     <div class="buttonHero">
-        {% include 'components/button.html.twig' %}
-        {% include 'components/button.html.twig' %}
+        {% include 'components/button.html.twig' with {'textBtn': 'Resorts', 'linkUrl': '/resorts'} %}
+        {% include 'components/button.html.twig' with {'textBtn': 'Book now', 'linkUrl': '/booking'} %}
     </div>
     {% endblock %}
 </div>

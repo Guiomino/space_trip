@@ -7,106 +7,151 @@
     <div class="carouselResorts">
         <div class="hideBorderRight"></div>
         <div class="hideBorderLeft"></div>
+
         <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
-            {% for imagePath in imagePaths %}
-            <img class="image" src="{{ asset('img/Resorts/' ~ imagePath) }}" draggable="false" alt="">
+            {% for resort in resorts %}
+            <div class="textContainer">
+                <h4>{{ resort.getName() }}</h4>
+                <p>{{ resort.getPlace() }}</p>
+            </div>
+            <img class="image" src="{{ asset('img/Resorts/' ~ resort.getImage()) }}" draggable="false" alt="">
             {% endfor %}
         </div>
+
     </div>
 </div>
 
 <style>
-/* body {
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(30, 30, 40);
-    margin: 0rem;
-    overflow: hidden;
-  } */
+    /* body {
+        overflow: hidden;
+    } */
+
+    .hideBorderRight,
+    .hideBorderLeft {
+        z-index: 9999;
+        position: absolute;
+        width: 150px;
+        height: 100%;
+    }
+
+    .hideBorderLeft {
+        background: linear-gradient(to right, #00071F 33%, #00071F88 66%, #00071F00 100%);
+        left: 0;
+    }
+
+    .hideBorderRight {
+        background: linear-gradient(to left, #00071F 33%, #00071F88 66%, #00071F00 100%);
+        right: 0;
+    }
 
 
-.hideBorderLeft {
-    z-index: 9999;
-    position: absolute;
-    width: 300px;
-    height: 100%;
-    /* background-color: red; */
-    background: linear-gradient(to right, #00071F, #00071F00);
-    left: 0;
-}
+    .carouselResorts {
+        width: 100%;
+        height: 400px;
+        position: relative;
+    }
 
-  .carouselResorts {
-    width: 100%;
-    height: 400px;
-    position: relative;
- }  
+    .textContainer {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+    }
 
-  #image-track {
-    display: flex;
-    gap: 3vmin;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(0%, -50%); 
-    user-select: none; /* -- Prevent image highlighting -- */
-  }
-  
-  #image-track > .image {
-    /* width: 40vmin;
+
+
+    .textContainer h4 {
+        margin-top: 20px;
+        left: 25px;
+        position: absolute;
+        width: 140px;
+        color: white;
+        text-shadow: 0px 0px 10px rgb(238, 67, 0);
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .textContainer p {
+        margin-top: 80px;
+        left: 25px;
+        position: absolute;
+        width: 140px;
+        color: white;
+        text-shadow: 0px 0px 3px black;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    #image-track {
+        display: flex;
+        gap: 3vmin;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(0%, -50%);
+        user-select: none;
+        /* -- Prevent image highlighting -- */
+    }
+
+    #image-track>.image {
+        /* width: 40vmin;
     height: 56vmin; */
-    width: 150px;
-    height: 300px;
-    object-fit: cover;
-    object-position: 100% center;
-    cursor: pointer;
-    border: 1px solid rgb(100, 100, 100);
-    border-radius: 8px;
-    box-shadow: 0px 4px 16px black;
-  }
+        width: 150px;
+        height: 300px;
+        object-fit: cover;
+        object-position: 100% center;
+        cursor: pointer;
+        border: 1px solid rgb(100, 100, 100);
+        border-radius: 8px;
+        box-shadow: 0px 4px 16px black;
+    }
 </style>
 
 
 
 <script>
     const track = document.getElementById("image-track");
+    const textContainer = document.querySelector(".textContainer");
 
-const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
+    const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
 
-const handleOnUp = () => {
-  track.dataset.mouseDownAt = "0";
-  track.dataset.prevPercentage = track.dataset.percentage;
-}
+    const handleOnUp = () => {
+        track.dataset.mouseDownAt = "0";
+        track.dataset.prevPercentage = track.dataset.percentage;
+    }
 
-const handleOnMove = e => {
-  if (track.dataset.mouseDownAt === "0") return;
+    const handleOnMove = e => {
+        if (track.dataset.mouseDownAt === "0") return;
 
-  const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
-    maxDelta = window.innerWidth / 1;
+        const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+            maxDelta = window.innerWidth / 1;
 
-  const percentage = (mouseDelta / maxDelta) * -100;
-  const nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage;
-  const nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
+        const percentage = (mouseDelta / maxDelta) * -100;
+        const nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage;
+        const nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
 
-  track.dataset.percentage = nextPercentage;
+        track.dataset.percentage = nextPercentage;
 
-  track.animate({
-    transform: `translate(${nextPercentage}%, -50%)`
-  }, { duration: 1200, fill: "forwards" });
+        track.animate({
+            transform: `translate(${nextPercentage}%, -50%)`
+        }, { duration: 1200, fill: "forwards" });
 
-  for (const image of track.getElementsByClassName("image")) {
-    image.animate({
-      objectPosition: `${100 + nextPercentage}% center`
-    }, { duration: 1200, fill: "forwards" });
-  }
-}
+        for (const image of track.getElementsByClassName("image")) {
+            image.animate({
+                objectPosition: `${100 + nextPercentage}% center`
+            }, { duration: 1200, fill: "forwards" });
+        }
+        textContainer.style.transform = `translate(${nextPercentage}%, -50%)`;
+    }
 
-/* -- Had to add extra lines for touch events -- */
+    /* -- Had to add extra lines for touch events -- */
 
-window.onmousedown = e => handleOnDown(e);
-window.ontouchstart = e => handleOnDown(e.touches[0]);
-window.onmouseup = e => handleOnUp(e);
-window.ontouchend = e => handleOnUp(e.touches[0]);
-window.onmousemove = e => handleOnMove(e);
-window.ontouchmove = e => handleOnMove(e.touches[0]);
+    window.onmousedown = e => handleOnDown(e);
+    window.ontouchstart = e => handleOnDown(e.touches[0]);
+    window.onmouseup = e => handleOnUp(e);
+    window.ontouchend = e => handleOnUp(e.touches[0]);
+    window.onmousemove = e => handleOnMove(e);
+    window.ontouchmove = e => handleOnMove(e.touches[0]);
 </script>
 {% endblock %}

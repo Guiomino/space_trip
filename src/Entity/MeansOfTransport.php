@@ -40,13 +40,13 @@ class MeansOfTransport
     #[ORM\Column(length: 80)]
     private ?string $pressurization = null;
 
-    #[ORM\Column(length: 80)]
+    #[ORM\Column(length: 80, nullable: true)]
     private ?string $off_road_capability = null;
 
-    #[ORM\Column(length: 80)]
+    #[ORM\Column(length: 80, nullable: true)]
     private ?string $altitude = null;
 
-    #[ORM\Column(length: 80)]
+    #[ORM\Column(length: 80, nullable: true)]
     private ?string $underwater_map_system = null;
 
     #[ORM\Column]
