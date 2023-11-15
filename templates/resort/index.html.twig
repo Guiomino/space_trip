@@ -12,37 +12,67 @@
         <li>
             <div class="resortContainer" style="background-image: url('{{ asset("img/Resorts/" ~ resort.getImage()) }}')">
 
-            <div class="titleResortContainer">
-                <div class="title">
-                    <div class="pictoAndSubtitle">
-                        <div class="picto"><i class="far fa-dot-circle"></i></div>
-                        <h2>{{ resort.getName() }}</h2>
-
-                        {% block button %}
-                        {% include 'components/button.html.twig' with {'textBtn': 'Book now', 'linkUrl': '/booking'} %}
-                        {% endblock %}
+                <div class="resortElementsContainer">
+                <div class="titleContainer">
+                    
+                    <div class="changeResortBtn">
+                    <button id="prevBtn" onclick="changeSlide(-1)"><i class="fas fa-caret-left"></i> Previous</button>
+                    <button id="nextBtn" onclick="changeSlide(1)">Next <i class="fas fa-caret-right"></i></button>
                     </div>
+
+                    <div class="titleResort">
+                            <div class="picto"><i class="far fa-dot-circle"></i></div>
+                            <h2 class="title">{{ resort.getName() }}</h2>
+
+                            {% block button %}
+                            <div class="bookBtn">
+                            {% include 'components/button.html.twig' with {'textBtn': 'Book now', 'linkUrl': '/booking'} %}
+                            </div>
+                            {% endblock %}
+                    </div>
+
+                    <div class="separateResort"></div>
+                    <div class="subtitleResort">{{ resort.getDescription() }}</div>
                 </div>
 
-                <div class="separateSubtitles"></div>
 
-                <div class="underSubtitles">to embark on a unique journey that will live forever in your memories</div>
+                <div class="infoContainer">
+
+                    <div class="startingPriceContainer">
+                        <div class="conversion">
+                            <p><span>Starting Price :</span></p>
+                            <p>1 CC (CrimsonCoin) = 0,125 USD</p>
+                            <p>1 USD americains = 8 CC</p>
+                        </div>
+
+                        <div class="price">
+                            <p>{{ resort.getStartingPrice() }} CC</p>
+                        </div>
+                    </div>
+
+
+                    <div class="detailsContainer">
+                        <div class="place">
+                            <p><span>Place :</span></p>
+                            <p>{{ resort.getPlace() }}</p>
+                        </div>
+                        <div class="area">
+                            <p><span>Area :</span></p>
+                            <p>{{ resort.getArea() }}</p>
+                        </div>
+                        <div class="description">
+                            <p><span>Description :</span></p>
+                            <p>{{ resort.getDescription() }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
 
-
-
-
-            <p>{{ resort.getDescription() }}</p>
-            <p>Place: {{ resort.getPlace() }}</p>
-            <p>Area: {{ resort.getArea() }}</p>
-            <p>Starting Price: {{ resort.getStartingPrice() }}</p>
-</div>
 </li>
 {% endfor %}
 </ul>
 
-<button id="prevBtn" onclick="changeSlide(-1)">❮</button>
-<button id="nextBtn" onclick="changeSlide(1)">❯</button>
 </div>
 
 
@@ -70,21 +100,19 @@
 
     .resortContainer {
         width: 100%;
-        height: 100vh;
+        height: 800px;
         box-sizing: border-box;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         position: relative;
     }
 
     li {
         width: 100%;
-        box-sizing: border-box;
         display: none;
         /* Masquer tous les éléments initialement */
     }
@@ -94,31 +122,157 @@
         /* Afficher le premier élément */
     }
 
-    .titleResortContainer {
+    .resortElementsContainer {
+        width: 80%;
+        margin-top: 150px;
+    }
+
+    .titleContainer {
         display: flex;
         flex-direction: column;
-        margin-top: 80px;
+        margin-bottom: 50px;
+    }
+
+    .changeResortBtn {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
     }
 
     button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 20px;
+        font-size: 16px;
         background: none;
         border: none;
         color: white;
+        text-shadow: 0px 0px 4px #000;
         cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        text-shadow: 0px 0px 4px #fff;
     }
 
     #prevBtn {
-        z-index: 9999;
-        left: 5%;
+        display: flex;
+        align-items: center;
+        gap: 5px;
     }
 
     #nextBtn {
-        right: 5%;
+        display: flex;
+        align-items: center;
+        gap: 5px;
     }
+
+    .titleResort {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .picto {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 10px;
+        margin-right: 10px;
+        background: linear-gradient(to top right, #F33A00, #F3002C);
+        border-radius: 2px;
+    }
+
+    .title {
+        font-size: 24px;
+        text-transform: uppercase;
+        text-shadow: 0px 0px 4px #F33A00;
+    }
+
+    .bookBtn {
+        margin-left: auto;
+    }
+
+    .separateResort {
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .subtitleResort {
+        width: 66%;
+        font-size: 20px;
+        text-shadow: 0px 0px 4px #000;
+    }
+    
+    .infoContainer {
+        display: flex;
+    }
+
+    .startingPriceContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 60%;
+    }
+
+    .conversion span {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .conversion {
+        text-shadow: 0px 0px 4px #000;
+        font-size: 16px;
+        margin-bottom: 50px;
+    }
+
+    .price {
+        background: radial-gradient(circle at right bottom, #ffffff00, #ffffff15);
+        -webkit-backdrop-filter: blur(10px);
+        -moz-backdrop-filter: blur(10px);
+        -ms-backdrop-filter: blur(10px);
+        -o-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 4px;
+        box-shadow: 0px 0px 10px #00000055;
+        border: 1px solid #ffffff22;
+        width: 80%;
+        padding: 10px 30px;
+        font-weight: 800;
+        font-size: 30px;
+        text-align: center;
+        text-shadow: 0px 0px 4px #F33A00;
+    }
+
+    .detailsContainer {
+        background: radial-gradient(circle at right bottom, #ffffff00, #ffffff15);
+        -webkit-backdrop-filter: blur(10px);
+        -moz-backdrop-filter: blur(10px);
+        -ms-backdrop-filter: blur(10px);
+        -o-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 4px;
+        box-shadow: 0px 0px 10px #00000055;
+        border: 1px solid #ffffff22;
+        padding: 10px;
+        gap: 8px;
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+    }
+
+    .place span, .area span, .description span {
+        font-size: 20px;
+        font-weight: 700;
+    }
+    
+    .place, .area, .description {
+        text-shadow: 0px 0px 4px #000;
+        font-size: 16px;
+    }
+
 </style>
 
 
