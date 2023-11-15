@@ -1,42 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% import 'components/button.html.twig' as button %}
-
-{% block title %}Log in!{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block body %}
 <div class="backgroundLogin">
     <img class="milkyWay" src="{{ asset('img/MilkyWay.jpg') }}" alt="Milky Way">
-    <form class="loginForm" method="post">
-        {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
 
-        {% if app.user %}
-        <div>
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+    <div class="registerForm">
+        
+        {{ form_errors(registrationForm) }}
+        {{ form_start(registrationForm) }}
+        <h1>Register</h1>
+
+        <div class="labelRegister">
+            {{ form_row(registrationForm.first_name) }}
         </div>
-        {% endif %}
 
-        <h1>Login</h1>
-        <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required
-            autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" autocomplete="current-password" required>
+        <div class="labelRegister">
+            {{ form_row(registrationForm.last_name) }}
+        </div>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <div class="labelRegister">
+            {{ form_row(registrationForm.email) }}
+        </div>
 
-        <button class="submitBtn" type="submit">
-            Sign in
-        </button>
+        <div class="labelRegister">
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+        </div>
 
-        <a class="dropAuthForm" href="{{ path('app_register') }}">Or register</a>
-    </form>
+        <div class="labelRegister">
+            {{ form_row(registrationForm.agreeTerms) }}
+        </div>
+
+        <button type="submit" class="submitBtn">Register</button>
+
+        {{ form_end(registrationForm) }}
+        <a class="dropAuthForm" href="{{ path('app_login') }}">Or login</a>
+    </div>
 </div>
 
-<style>
-    body {
+    <style>
+            body {
         background-color: #00071F;
         user-select: none;
     }
@@ -52,7 +58,11 @@
         z-index: -1;
     }
 
-    .loginForm {
+    .labelRegister label {
+        display: flex;
+    }
+
+    .registerForm {
         color: white;
         display: flex;
         flex-direction: column;
@@ -62,11 +72,11 @@
         margin: auto;
         left: 0;
         right: 0;
-        top: 0;
+        top: 30px;
         bottom: 0;
-        gap: 10px;
+        gap: 20px;
         width: 280px;
-        height: 380px;
+        height: 450px;
         background: radial-gradient(circle at right bottom, #ffffff00, #ffffff15);
         -webkit-backdrop-filter: blur(10px);
         -moz-backdrop-filter: blur(10px);
@@ -78,8 +88,26 @@
         border: 1px solid #ffffff22;
     }
 
-    .loginForm h1,
-    .loginForm input {
+    .registerForm form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .registerForm ul li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        list-style-type: none;
+        text-align: center;
+        color: rgb(255, 55, 0);
+        font-size: 12px;
+    }
+
+    .registerForm h1, .registerForm input{
         margin-bottom: 10%;
     }
 
@@ -113,6 +141,5 @@
     .dropAuthForm:hover {
         color: #F33A00;
     }
-
-</style>
+    </style>
 {% endblock %}

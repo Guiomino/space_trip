@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -15,15 +17,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-
-
     #[ORM\Column(length: 50)]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 50)]
     private ?string $last_name = null;
-
-
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
@@ -37,21 +35,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
- 
-    #[ORM\Column]
-    private ?bool $rgpd = null;
-
-    #[ORM\Column]
-    private ?bool $is_connected = null;
-
 
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-
 
     public function getFirstName(): ?string
     {
@@ -76,8 +65,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-
 
     public function getEmail(): ?string
     {
@@ -134,33 +121,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-
-
-    public function isRgpd(): ?bool
-    {
-        return $this->rgpd;
-    }
-
-    public function setRgpd(bool $rgpd): static
-    {
-        $this->rgpd = $rgpd;
-
-        return $this;
-    }
-
-    public function isIsConnected(): ?bool
-    {
-        return $this->is_connected;
-    }
-
-    public function setIsConnected(bool $is_connected): static
-    {
-        $this->is_connected = $is_connected;
-
-        return $this;
-    }
-
 
     /**
      * @see UserInterface

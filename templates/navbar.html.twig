@@ -65,9 +65,9 @@
             <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-user-circle" title="USER PROFILE"></i><p class="hiddenMainLink">USER PROFILE</p><i
                     class="fas fa-chevron-down"></i></a>
             <div class="dropdown-menu keep-open"><p>USER PROFILE</p> <div class="separator"></div>
-                <a href="#"><i class="fas fa-sign-in-alt"></i>LOGIN</a>
-                <a href="#"><i class="fas fa-sign-out-alt"></i>DISCONNECTION</a>
-                <a href="#"><i class="fas fa-user-plus"></i>REGISTER</a>
+                <a href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt"></i>LOGIN</a>
+                <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i>DISCONNECTION</a>
+                <a href="{{ path('app_register') }}"><i class="fas fa-user-plus"></i>REGISTER</a>
             </div>
 
             <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-share-alt" title="SOCIALE NETWORK"></i><p class="hiddenMainLink">SOCIAL NETWORK</p><i
@@ -118,10 +118,11 @@ body {
     margin-right: auto;
     text-align: center;
     font-size: 10px;
-    width: 8%;
+    width: 80px;
     height: auto;
     display: block; 
 }
+
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////// */
 .NavbarContainer {
@@ -185,6 +186,7 @@ body {
     font-size: 18px;
     margin: 60px 0 30px 0;
     user-select: none;
+    pointer-events: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -426,6 +428,12 @@ body {
     .parent-link i {
         margin-left: 18px;
     }
+
+    #mainLogo {
+    margin-right: 80px;
+    width: 50px;
+
+}
 
 }
 </style>
