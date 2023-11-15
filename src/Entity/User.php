@@ -3,18 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+
 
     #[ORM\Column(length: 50)]
     private ?string $first_name = null;
@@ -22,30 +23,35 @@ class User
     #[ORM\Column(length: 50)]
     private ?string $last_name = null;
 
-    #[ORM\Column(length: 80)]
+
+
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $password_hash = null;
+    #[ORM\Column]
+    private array $roles = [];
 
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
+
+ 
     #[ORM\Column]
     private ?bool $rgpd = null;
 
     #[ORM\Column]
     private ?bool $is_connected = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Stay::class)]
-    private Collection $stays;
 
-    public function __construct()
-    {
-        $this->stays = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
+
 
     public function getFirstName(): ?string
     {
@@ -71,6 +77,8 @@ class User
         return $this;
     }
 
+
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -83,17 +91,51 @@ class User
         return $this;
     }
 
-    public function getPasswordHash(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->password_hash;
+        return (string) $this->email;
     }
 
-    public function setPasswordHash(string $password_hash): static
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->password_hash = $password_hash;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
 
         return $this;
     }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+
 
     public function isRgpd(): ?bool
     {
@@ -119,33 +161,13 @@ class User
         return $this;
     }
 
+
     /**
-     * @return Collection<int, Stay>
+     * @see UserInterface
      */
-    public function getStays(): Collection
+    public function eraseCredentials(): void
     {
-        return $this->stays;
-    }
-
-    public function addStay(Stay $stay): static
-    {
-        if (!$this->stays->contains($stay)) {
-            $this->stays->add($stay);
-            $stay->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStay(Stay $stay): static
-    {
-        if ($this->stays->removeElement($stay)) {
-            // set the owning side to null (unless already changed)
-            if ($stay->getUser() === $this) {
-                $stay->setUser(null);
-            }
-        }
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
