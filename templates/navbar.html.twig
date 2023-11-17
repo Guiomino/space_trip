@@ -24,7 +24,7 @@
         <div class="separator"></div>
         <div id="menuTitle">MENU</div>
         <div class="main-menu">
-            <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-map-marker-alt" title="RESORTS"></i><p class="hiddenMainLink">RESORTS</p><i
+            <a class="dropdown-toggle parent-link" href="{{ path('app_resorts') }}"><i class="fas fa-map-marker-alt" title="RESORTS"></i><p class="hiddenMainLink">RESORTS</p><i
                     class="fas fa-chevron-down"></i></a>
             <div class="dropdown-menu keep-open"><p>RESORTS</p> <div class="separator"></div>
                 <a href="#"><i class="far fa-dot-circle"></i>Eclipse of Marineris</a>
@@ -48,7 +48,7 @@
                 <a href="#"><i class="fas fa-exclamation-triangle"></i>PRECAUTION</a>
             </div>
 
-            <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-calendar-check" title="RESERVATION"></i><p class="hiddenMainLink">RESERVATION</p><i
+            <a class="dropdown-toggle parent-link" href="{{ path('app_booking') }}"><i class="fas fa-calendar-check" title="RESERVATION"></i><p class="hiddenMainLink">RESERVATION</p><i
                     class="fas fa-chevron-down"></i></a>
             <div class="dropdown-menu keep-open"><p>RESERVATION</p> <div class="separator"></div>
                 <a href="#"><i class="fas fa-bed"></i>TYPE OF ACCOMODATION</a>
@@ -68,6 +68,7 @@
                 <a href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt"></i>LOGIN</a>
                 <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i>DISCONNECTION</a>
                 <a href="{{ path('app_register') }}"><i class="fas fa-user-plus"></i>REGISTER</a>
+                <a href="#"><i class="fas fa-user-plus"></i>YOUR ACCOUNT</a>
             </div>
 
             <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-share-alt" title="SOCIALE NETWORK"></i><p class="hiddenMainLink">SOCIAL NETWORK</p><i
@@ -432,8 +433,7 @@ body {
     #mainLogo {
     margin-right: 80px;
     width: 50px;
-
-}
+    }
 
 }
 </style>

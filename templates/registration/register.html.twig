@@ -9,6 +9,7 @@
     <div class="registerForm">
         
         {{ form_errors(registrationForm) }}
+        <!-- {{ form_start(registrationForm, {'attr': {'class': 'registerForm'}}) }} -->
         {{ form_start(registrationForm) }}
         <h1>Register</h1>
 
@@ -42,7 +43,7 @@
 </div>
 
     <style>
-            body {
+    body {
         background-color: #00071F;
         user-select: none;
     }
@@ -95,7 +96,7 @@
         align-items: center;
     }
 
-    .registerForm ul li {
+    .registerForm ul{
         display: flex;
         flex-direction: column;
         justify-content: center;
