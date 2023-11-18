@@ -1,0 +1,413 @@
+{# templates/user_dashboard/dashboard.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+{% block button %}
+<div class="dashboardComplete">
+    <img class="imgDashboard" src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Dashboard image">
+    <div class="imgCoverBottom"></div>
+
+    <div class="dashboardContainer">
+
+        <div class="leftSection">
+            <div class="userInfo">
+                <div class="titleSection">
+                    <i class="fa-solid fa-user"></i>
+                    <p>User informations</p>
+                </div>
+                <a class="imgAvatarLink" href="#"><img src="{{ asset('img/Dashboard/avatar_1.jpg') }}" alt="Avatar"></a>
+
+
+                <div class="informationSection">
+                    <div class="detailSection">
+                        <i class="fa-regular fa-user"></i>
+                        <p>Jano Lapin</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-solid fa-fingerprint"></i>
+                        <p>User id: 0123</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-regular fa-flag"></i>
+                        <p>English</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-solid fa-at"></i>
+                        <p>janolapin@mail.com</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <p>0123456789</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-regular fa-envelope"></i>
+                        <p>73000 Chambery</p>
+                    </div>
+                </div>
+
+                <div class="btnComponents">
+                    {% include 'components/button.html.twig' with {'textBtn': 'Edit', 'linkUrl': '#'} %}
+                </div>
+
+
+            </div>
+
+            <div class="bookingSummary">
+                <div class="titleSection">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <p>Summary of current booking</p>
+                </div>
+
+                <div class="btnComponents">
+                    {% include 'components/button.html.twig' with {'textBtn': 'Summary', 'linkUrl': '#'} %}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="middleSection">
+            <div class="imageContent">
+                <a class="imgDashboardTargeted" href="#"><img
+                        src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Dashboard Background"></a>
+            </div>
+
+            <div class="commentSection">
+                <div class="titleSection">
+                    <i class="fa-solid fa-comment"></i>
+                    <p>Comment</p>
+                </div>
+
+                <div class="informationSection">
+                    <div class="detailSection">
+                        <i class="fa-regular fa-thumbs-up"></i>
+                        <p>Your experience</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-regular fa-star"></i>
+                        <p>⭐⭐⭐⭐☆</p>
+                        {# Ajoutez système de notation par étoiles #}
+                    </div>
+
+                    <div class="detailSection">
+                        <p>Comment : </br>
+                            This holiday was a feast for the eyes and the senses. It was a unique experience that
+                            transported my wife and I into a nightmarish world, but one that is so appealing that we're
+                            thinking of going back. Maybe to the Frost Ballet or the Nocturnal Enigma. What a choice ! I
+                            wouldn't give it 5 stars because the food isn't very tasty. But I know that there will soon
+                            be new vegetable gardens cultivated on Martian soil. Can't wait to taste it !</p>
+                    </div>
+
+                </div>
+
+                <div class="btnComponents">
+                    {% include 'components/button.html.twig' with {'textBtn': 'Add comment', 'linkUrl': '#'} %}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="rightSection">
+            <div class="bookingHistory">
+                <div class="titleSection">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <p>Booking history</p>
+                </div>
+
+                <div class="informationSection">
+                    <div class="detailSection">
+                        <i class="fa-regular fa-circle-dot"></i>
+                        <p>RESORT : Texte dynamique</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-solid fa-house"></i>
+                        <p>ACCOMODATION : Texte dynamique</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-regular fa-calendar"></i>
+                        <p>LENGTH OF STAY : Texte dynamique</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <p>START STAY : Texte dynamique</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="customerSupport">
+                <div class="titleSection">
+                    <i class="fa-solid fa-gear"></i>
+                    <p>Customer support</p>
+                </div>
+
+                <div class="informationSection">
+                    <div class="detailSection">
+                        <i class="fa-regular fa-circle-question"></i>
+                            {% include 'components/button.html.twig' with {'textBtn': 'See the FAQ', 'linkUrl': '#'} %}
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p>If you cannot find an answer,</br>please contact us :</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-solid fa-at"></i>
+                        <p>Support email : support@spacetrip.com</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>Phone : +012 34 56 789</p>
+                    </div>
+
+                    <div class="detailSection">
+                        <i class="fa-regular fa-envelope"></i>
+                        <p>Post : Av. Jean Gonord 31500 Toulouse</p>
+                    </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: auto;
+        background-color: #00071F;
+        user-select: none;
+    }
+
+    .dashboardComplete {
+        width: 100%;
+        top: 0;
+    }
+
+    .imgDashboard {
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        object-position: 50% 50%;
+        object-fit: cover;
+        width: 100%;
+        z-index: -1;
+    }
+
+    .imgCoverBottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(to top, #00071F 10%, #00071F00);
+    }
+
+    .dashboardContainer {
+        margin: 100px 30px 20px 30px;
+        height: 100vh;
+        gap: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .leftSection,
+    .middleSection,
+    .rightSection {
+        width: 28%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        gap: 10px;
+    }
+
+    @media only screen and (max-width: 750px) {
+        .dashboardComplete {
+            height: 250%;
+        }
+
+        .imgDashboard {
+            height: 250%;
+        }
+
+        .dashboardContainer {
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+        }
+
+        .leftSection,
+        .middleSection,
+        .rightSection {
+            width: 380px;
+        }
+    }
+
+    @media only screen and (max-width: 400px) {
+
+        .leftSection,
+        .middleSection,
+        .rightSection {
+            width: 260px;
+        }
+    }
+
+
+    .imgDashboardTargeted {
+        margin: auto;
+        position: relative;
+        display: inline-block;
+        color: white;
+    }
+
+    .imgDashboardTargeted img {
+        width: 100%;
+        border-radius: 4px;
+        box-shadow: 0px 0px 10px #00000055;
+        border: 1px solid #ffffff22;
+    }
+
+    .imgDashboardTargeted::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease;
+        content: 'Change image';
+        opacity: 0;
+    }
+
+    .imgDashboardTargeted:hover::after {
+        opacity: 1;
+    }
+
+
+
+    .imgAvatarLink {
+        margin: auto;
+        position: relative;
+        display: inline-block;
+        color: white;
+    }
+
+    .imgAvatarLink img {
+        width: 100px;
+        border-radius: 50%;
+        border: 3px solid #F33A00;
+        box-shadow: 0px 4px 10px #00000088;
+    }
+
+    .imgAvatarLink::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease;
+        content: 'Change avatar';
+        opacity: 0;
+    }
+
+    .imgAvatarLink:hover::after {
+        opacity: 1;
+    }
+
+
+
+    .btnComponents {
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+
+    .userInfo,
+    .bookingSummary,
+    .imageContent,
+    .commentSection,
+    .bookingHistory,
+    .customerSupport {
+        color: white;
+        text-shadow: 0px 0px 4px black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 10px;
+        width: 100%;
+        padding: 20px;
+        background: radial-gradient(circle at right bottom, #ffffff00, #ffffff15);
+        -webkit-backdrop-filter: blur(10px);
+        -moz-backdrop-filter: blur(10px);
+        -ms-backdrop-filter: blur(10px);
+        -o-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 4px;
+        box-shadow: 0px 4px 12px #00000055;
+        border: 1px solid #ffffff22;
+    }
+
+    .titleSection {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .informationSection {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .detailSection {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 12px;
+    }
+
+    .detailSection p {
+        padding: 5px;
+        background: radial-gradient(circle at right bottom, #ffffff00, #ffffff15);
+        -webkit-backdrop-filter: blur(10px);
+        -moz-backdrop-filter: blur(10px);
+        -ms-backdrop-filter: blur(10px);
+        -o-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 2px;
+        box-shadow: 0px 4px 12px #00000055;
+        border: 1px solid #ffffff22;
+    }
+
+    .detailSection i,
+    .titleSection i {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        background: linear-gradient(to top right, #F33A00, #F3002C);
+        border-radius: 2px;
+    }
+</style>
+{% endblock %}
