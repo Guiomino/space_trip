@@ -7,7 +7,7 @@
 {% block body %}
 {% block button %}
 <div class="dashboardComplete">
-    <img class="imgDashboard" src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Dashboard image">
+    <img class="imgDashboard" id="dashboardImage" src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Dashboard image">
     <div class="imgCoverBottom"></div>
 
     <div class="dashboardContainer">
@@ -18,7 +18,8 @@
                     <i class="fa-solid fa-user"></i>
                     <p>User informations</p>
                 </div>
-                <a class="imgAvatarLink" href="#"><img src="{{ asset('img/Dashboard/avatar_1.jpg') }}" alt="Avatar"></a>
+                <a class="imgAvatarLink" id="avatarLink" href="#"><img src="{{ asset('img/Dashboard/avatar_1.jpg') }}"
+                        alt="Avatar"></a>
 
 
                 <div class="informationSection">
@@ -28,34 +29,40 @@
                     </div>
 
                     <div class="detailSection">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                        <p>Pseudo: Chaud Lapin</p>
+                    </div>
+
+                    <div class="detailSection">
                         <i class="fa-solid fa-fingerprint"></i>
                         <p>User id: 0123</p>
                     </div>
 
                     <div class="detailSection">
                         <i class="fa-regular fa-flag"></i>
-                        <p>English</p>
+                        <p>Lang: English</p>
                     </div>
 
                     <div class="detailSection">
                         <i class="fa-solid fa-at"></i>
-                        <p>janolapin@mail.com</p>
+                        <p>Mail: janolapin@mail.com</p>
                     </div>
 
                     <div class="detailSection">
                         <i class="fa-solid fa-mobile-screen-button"></i>
-                        <p>0123456789</p>
+                        <p>Phone: 0123456789</p>
                     </div>
 
                     <div class="detailSection">
-                        <i class="fa-regular fa-envelope"></i>
-                        <p>73000 Chambery</p>
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <p>City: 73000 Chambery</p>
                     </div>
                 </div>
 
                 <div class="btnComponents">
                     {% include 'components/button.html.twig' with {'textBtn': 'Edit', 'linkUrl': '#'} %}
                 </div>
+
 
 
             </div>
@@ -75,7 +82,7 @@
 
         <div class="middleSection">
             <div class="imageContent">
-                <a class="imgDashboardTargeted" href="#"><img
+                <a class="imgDashboardTargeted" id="imageLink" href="#"><img
                         src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Dashboard Background"></a>
             </div>
 
@@ -155,7 +162,7 @@
                 <div class="informationSection">
                     <div class="detailSection">
                         <i class="fa-regular fa-circle-question"></i>
-                            {% include 'components/button.html.twig' with {'textBtn': 'See the FAQ', 'linkUrl': '#'} %}
+                        {% include 'components/button.html.twig' with {'textBtn': 'See the FAQ', 'linkUrl': '#'} %}
                     </div>
 
                     <div class="detailSection">
@@ -181,8 +188,64 @@
                 </div>
             </div>
         </div>
+
+
+        <div id="avatarModal" class="modal">
+            <div class="modalContent ">
+                <p>Select your avatar</p>
+                <div class="avatarList">
+                    <img src="{{ asset('img/Dashboard/avatar_1.jpg') }}" alt="Avatar 1"
+                        onclick="changeAvatar(this.src)">
+                    <img src="{{ asset('img/Dashboard/avatar_2.jpg') }}" alt="Avatar 2"
+                        onclick="changeAvatar(this.src)">
+                    <img src="{{ asset('img/Dashboard/avatar_3.jpg') }}" alt="Avatar 3"
+                        onclick="changeAvatar(this.src)">
+                    <img src="{{ asset('img/Dashboard/avatar_4.jpg') }}" alt="Avatar 4"
+                        onclick="changeAvatar(this.src)">
+                    <img src="{{ asset('img/Dashboard/avatar_5.jpg') }}" alt="Avatar 5"
+                        onclick="changeAvatar(this.src)">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div id="imageModal" class="modal">
+            <div class="modalContent ">
+                <p>Select your background image</p>
+                <div class="imageList">
+                    <img src="{{ asset('img/Dashboard/background_dashboard_1.jpg') }}" alt="Image 1"
+                        onclick="changeImage(this.src)">
+                    <img src="{{ asset('img/Dashboard/background_dashboard_2.jpg') }}" alt="Image 2"
+                        onclick="changeImage(this.src)">
+                    <img src="{{ asset('img/Dashboard/background_dashboard_3.jpg') }}" alt="Image 3"
+                        onclick="changeImage(this.src)">
+                    <img src="{{ asset('img/Dashboard/background_dashboard_4.jpg') }}" alt="Image 4"
+                        onclick="changeImage(this.src)">
+                    <img src="{{ asset('img/Dashboard/background_dashboard_5.jpg') }}" alt="Image 5"
+                        onclick="changeImage(this.src)">
+                    <img src="{{ asset('img/Dashboard/background_dashboard_6.jpg') }}" alt="Image 6"
+                        onclick="changeImage(this.src)">
+                    <img src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Image 7"
+                        onclick="changeImage(this.src)">
+                    <img src="{{ asset('img/Dashboard/background_dashboard_8.jpg') }}" alt="Image 8"
+                        onclick="changeImage(this.src)">
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
+
+
+
+
+
+
 
 <style>
     body {
@@ -300,21 +363,24 @@
 
 
 
-    .imgAvatarLink {
+    .imgAvatarLink,
+    .imageLink {
         margin: auto;
         position: relative;
         display: inline-block;
         color: white;
     }
 
-    .imgAvatarLink img {
+    .imgAvatarLink img,
+    .imageLink img {
         width: 100px;
         border-radius: 50%;
         border: 3px solid #F33A00;
         box-shadow: 0px 4px 10px #00000088;
     }
 
-    .imgAvatarLink::after {
+    .imgAvatarLink::after,
+    .imageLink::after {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -324,7 +390,8 @@
         opacity: 0;
     }
 
-    .imgAvatarLink:hover::after {
+    .imgAvatarLink:hover::after,
+    .imageLink:hover::after {
         opacity: 1;
     }
 
@@ -395,6 +462,7 @@
         border-radius: 2px;
         box-shadow: 0px 4px 12px #00000055;
         border: 1px solid #ffffff22;
+
     }
 
     .detailSection i,
@@ -409,5 +477,133 @@
         background: linear-gradient(to top right, #F33A00, #F3002C);
         border-radius: 2px;
     }
+
+
+
+
+
+
+    .modal,
+    .backgroundModal {
+        display: none;
+        position: fixed;
+        top: 0;
+        /* top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); */
+        z-index: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: #000000cc;
+    }
+
+    .modalContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        margin-top: 10%;
+        text-align: center;
+        color: white;
+        font-size: 15px;
+        gap: 10px;
+        padding: 20px;
+        width: 280px;
+        padding: 5px;
+        background: radial-gradient(circle at right bottom, #ffffff30, #ffffff45);
+        -webkit-backdrop-filter: blur(10px);
+        -moz-backdrop-filter: blur(10px);
+        -ms-backdrop-filter: blur(10px);
+        -o-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 2px;
+        box-shadow: 0px 4px 80px 12px black;
+        border: 1px solid #ffffff22;
+    }
+
+    .avatarList,
+    .imageList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .avatarList img,
+    .imageList img {
+        width: 100px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: 1px solid #ffffff22;
+        transition: 0.3s;
+    }
+
+    .avatarList img:hover,
+    .imageList img:hover {
+        filter: brightness(1.5);
+    }
 </style>
+
+
+
+
+<script>
+    // fenêtre modale
+    var modal = document.getElementById('avatarModal');
+    var backgroundModal = document.getElementById('imageModal');
+
+    // lien img avatar
+    var avatarLink = document.getElementById('avatarLink');
+    var imageLink = document.getElementById('imageLink');
+
+
+
+    // ouvre la fenêtre modale au click de l'avatar
+    avatarLink.onclick = function () {
+        modal.style.display = 'block';
+    };
+
+    // ouvre la fenêtre modale au click de l'image de fond
+    imageLink.onclick = function () {
+        backgroundModal.style.display = 'block';
+    };
+
+
+
+    // Lorsque l'utilisateur clique n'importe où à l'extérieur de la fenêtre modale, fermez-la
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+        if (event.target === backgroundModal) {
+            backgroundModal.style.display = 'none';
+        }
+    };
+
+
+
+    // Fonction pour changer l'avatar et ferme fenêtre après select
+    function changeAvatar(newSrc) {
+        var avatarImage = document.querySelector('#avatarLink img');
+        avatarImage.src = newSrc;
+        modal.style.display = 'none';
+    }
+
+    // Fonction pour changer l'image de fond et ferme fenêtre après select
+    function changeImage(newSrc) {
+    var backgroundImage = document.querySelector('#imageLink img');
+    backgroundImage.src = newSrc;
+
+    // Mise à jour de l'image imgDashboard
+    var dashboardImage = document.getElementById('dashboardImage');
+    dashboardImage.src = newSrc;
+
+    backgroundModal.style.display = 'none';
+}
+</script>
+
 {% endblock %}

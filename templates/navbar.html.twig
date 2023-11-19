@@ -10,7 +10,7 @@
 </head>
 
 <div class="headerNavbar">
-    <a href="{{ path('app_home')}}" class="mainLogo"><img id="mainLogo" src="{{ asset('img/logo.svg') }}" alt="logo SpaceTrip"></a>
+    <a href="{{ path('app_home') }}" class="mainLogo"><img id="mainLogo" src="{{ asset('img/logo.svg') }}" alt="logo SpaceTrip"></a>
 
 <div class="NavbarContainer">
     <div class="burger-menu">
@@ -109,6 +109,7 @@ body {
     background: linear-gradient(to bottom, #00071F 5%, #00071Fee 33%, #00071Fcc 50%, #00071F00 100%);
     position: fixed;
     top: 0;
+    pointer-events: none;
 }
 
 #mainLogo {
@@ -121,7 +122,8 @@ body {
     font-size: 10px;
     width: 80px;
     height: auto;
-    display: block; 
+    display: block;
+    pointer-events: auto;
 }
 
 
