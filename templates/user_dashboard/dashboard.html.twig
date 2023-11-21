@@ -25,42 +25,42 @@
                 <div class="informationSection">
                     <div class="detailSection">
                         <i class="fa-regular fa-user"></i>
-                        <p>Jano Lapin</p>
+                        <p>{{ user.getFirstName() ~ ' ' ~ user.getLastName() }}</p>
                     </div>
 
                     <div class="detailSection">
                         <i class="fa-solid fa-user-astronaut"></i>
-                        <p>Pseudo: Chaud Lapin</p>
+                        <p>{{ user.getPseudo() }}</p>
                     </div>
 
                     <div class="detailSection">
                         <i class="fa-solid fa-fingerprint"></i>
-                        <p>User id: 0123</p>
+                        <p>{{ user.getId() }}</p>
                     </div>
 
                     <div class="detailSection">
                         <i class="fa-regular fa-flag"></i>
-                        <p>Lang: English</p>
+                        <p>{{ user.getLang() }}</p>
                     </div>
 
                     <div class="detailSection">
                         <i class="fa-solid fa-at"></i>
-                        <p>Mail: janolapin@mail.com</p>
+                        <p>{{ user.getEmail() }}</p>
                     </div>
 
                     <div class="detailSection">
                         <i class="fa-solid fa-mobile-screen-button"></i>
-                        <p>Phone: 0123456789</p>
+                        <p>{{ user.getPhone() }}</p>
                     </div>
 
                     <div class="detailSection">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <p>City: 73000 Chambery</p>
+                        <p>{{ user.getCity() }}</p>
                     </div>
                 </div>
 
                 <div class="btnComponents">
-                    {% include 'components/button.html.twig' with {'textBtn': 'Edit', 'linkUrl': '#'} %}
+                    {% include 'components/button.html.twig' with {'textBtn': 'Edit', 'linkUrl': '/profile'} %}
                 </div>
 
 

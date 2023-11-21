@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231115153725 extends AbstractMigration
+final class Version20231120105244 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -30,7 +30,7 @@ final class Version20231115153725 extends AbstractMigration
         $this->addSql('CREATE TABLE points_of_interest (id INT AUTO_INCREMENT NOT NULL, place VARCHAR(50) NOT NULL, description LONGTEXT NOT NULL, image VARCHAR(150) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE resort (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(50) NOT NULL, description LONGTEXT NOT NULL, place VARCHAR(80) NOT NULL, area NUMERIC(10, 2) NOT NULL, starting_price NUMERIC(10, 2) NOT NULL, order_number INT NOT NULL, image VARCHAR(150) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE stay (id INT AUTO_INCREMENT NOT NULL, extra_activities_id INT NOT NULL, accommodation_id INT NOT NULL, user_id INT NOT NULL, duration_weeks INT NOT NULL, number_of_travelers INT NOT NULL, check_in DATE NOT NULL, check_out DATE NOT NULL, date_time DATETIME NOT NULL, total_amount NUMERIC(10, 2) NOT NULL, INDEX IDX_5E09839CB12E89EB (extra_activities_id), INDEX IDX_5E09839C8F3692CD (accommodation_id), INDEX IDX_5E09839CA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, first_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, first_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, pseudo VARCHAR(80) NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, lang VARCHAR(3) DEFAULT NULL, phone VARCHAR(18) DEFAULT NULL, city VARCHAR(80) DEFAULT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE messenger_messages (id BIGINT AUTO_INCREMENT NOT NULL, body LONGTEXT NOT NULL, headers LONGTEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', available_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', delivered_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_75EA56E0FB7336F0 (queue_name), INDEX IDX_75EA56E0E3BD61CE (available_at), INDEX IDX_75EA56E016BA31DB (delivered_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE planet ADD CONSTRAINT FK_68136AA5921D146A FOREIGN KEY (planet_characteristics_id) REFERENCES planet_characteristics (id)');
         $this->addSql('ALTER TABLE planet ADD CONSTRAINT FK_68136AA541DA9EF6 FOREIGN KEY (points_of_interest_id) REFERENCES points_of_interest (id)');

@@ -1,64 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
-
 {% block body %}
-<div class="backgroundLogin">
+
+
+<div>
     <img class="milkyWay" src="{{ asset('img/MilkyWay.jpg') }}" alt="Milky Way">
 
-    <div class="registerForm">
-        
-        {{ form_errors(registrationForm) }}
-        <!-- {{ form_start(registrationForm, {'attr': {'class': 'registerForm'}}) }} -->
-        {{ form_start(registrationForm) }}
-        <h1>Register</h1>
 
-        <div class="labelRegister">
-            {{ form_row(registrationForm.first_name) }}
-        </div>
+    <div class="updateForm">
+        <h2>Update User profile</h2>
 
-        <div class="labelRegister">
-            {{ form_row(registrationForm.last_name) }}
-        </div>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
 
-        <div class="labelRegister">
-            {{ form_row(registrationForm.pseudo) }}
-        </div>
+        {{ form_row(form.pseudo) }}
+        {{ form_row(form.lang) }}
+        {{ form_row(form.phone) }}
+        {{ form_row(form.city) }}
 
-        <div class="labelRegister">
-            {{ form_row(registrationForm.lang) }}
-        </div>
+        <a href="{{ path('app_dashboard') }}"><button type="submit" value="save" class="submitBtn">Update</button></a>
 
-        <div class="labelRegister">
-            {{ form_row(registrationForm.phone) }}
-        </div>
 
-        <div class="labelRegister">
-            {{ form_row(registrationForm.city) }}
-        </div>
-
-        <div class="labelRegister">
-            {{ form_row(registrationForm.email) }}
-        </div>
-
-        <div class="labelRegister">
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
-            }) }}
-        </div>
-
-        <div class="labelRegister">
-            {{ form_row(registrationForm.agreeTerms) }}
-        </div>
-
-        <button type="submit" class="submitBtn">Register</button>
-
-        {{ form_end(registrationForm) }}
-        <a class="dropAuthForm" href="{{ path('app_login') }}">Or login</a>
+        {{ form_end(form) }}
+        <a class="dropAuthForm" href="{{ path('app_dashboard') }}">Cancel</a>
     </div>
 </div>
 
-    <style>
+
+
+
+
+<style>
     body {
         background-color: #00071F;
         user-select: none;
@@ -75,11 +47,7 @@
         z-index: -1;
     }
 
-    .labelRegister label {
-        display: flex;
-    }
-
-    .registerForm {
+    .updateForm {
         color: white;
         display: flex;
         flex-direction: column;
@@ -95,7 +63,8 @@
         bottom: 0;
         gap: 20px;
         width: 280px;
-        height: 700px;
+        padding: 20px 0px;
+        /* height: 700px; */
         background: radial-gradient(circle at right bottom, #ffffff00, #ffffff15);
         -webkit-backdrop-filter: blur(10px);
         -moz-backdrop-filter: blur(10px);
@@ -107,28 +76,26 @@
         border: 1px solid #ffffff22;
     }
 
-    .registerForm form {
+    .updateForm h2 {
+        font-size: 16px;
+    }
+
+    .updateForm form {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: start;
+        margin: 10%;
+        gap: 12px;
     }
 
-    .registerForm ul{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
-        list-style-type: none;
-        text-align: center;
-        color: rgb(255, 55, 0);
-        font-size: 12px;
+    .updateForm input {
+        width: 100%;
     }
 
-    .registerForm h1, .registerForm input{
-        margin-bottom: 10%;
-    }
+
+
+
 
     .submitBtn {
         padding: 6px 22px;
@@ -151,14 +118,18 @@
         filter: brightness(2);
     }
 
+
+
     .dropAuthForm {
         color: white;
         font-size: 12px;
         text-decoration: none;
         transition: 0.3s;
     }
+
     .dropAuthForm:hover {
         color: #F33A00;
     }
-    </style>
+</style>
+
 {% endblock %}

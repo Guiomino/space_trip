@@ -23,11 +23,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private ?string $last_name = null;
 
+    #[ORM\Column(length: 80)]
+    private ?string $pseudo = null;
+
+
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
     #[ORM\Column]
     private array $roles = [];
+
+    #[ORM\Column(length: 3, nullable: true)]
+    private ?string $lang = null;
+
+    #[ORM\Column(length: 18, nullable: true)]
+    private ?string $phone = null;
+
+    #[ORM\Column(length: 80, nullable: true)]
+    private ?string $city = null;
 
     /**
      * @var string The hashed password
@@ -65,6 +78,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): static
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+
 
     public function getEmail(): ?string
     {
@@ -106,6 +133,46 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+
+    public function getLang(): ?string
+    {
+        return $this->lang;
+    }
+
+    public function setLang(?string $lang): static
+    {
+        $this->lang = $lang;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): static
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): static
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
 
     /**
      * @see PasswordAuthenticatedUserInterface
