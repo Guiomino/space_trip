@@ -34,6 +34,10 @@ class Stay
 
     #[ORM\ManyToOne(inversedBy: 'stays')]
     #[ORM\JoinColumn(nullable: false)]
+    private ?Resort $resort = null;
+
+    #[ORM\ManyToOne(inversedBy: 'stays')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?ExtraActivities $extra_activities = null;
 
     #[ORM\ManyToOne(inversedBy: 'stays')]
@@ -120,6 +124,20 @@ class Stay
 
         return $this;
     }
+
+
+    public function getResort(): ?Resort
+    {
+        return $this->resort;
+    }
+
+    public function setResort(?Resort $resort): static
+    {
+        $this->resort = $resort;
+
+        return $this;
+    }
+
 
     public function getExtraActivities(): ?ExtraActivities
     {

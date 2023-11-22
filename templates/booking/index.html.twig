@@ -3,6 +3,7 @@
 {% block title %}Hello BookingController!{% endblock %}
 
 {% block body %}
+
 <div class="bookingPage">
     <img class="milkyWay" src="{{ asset('img/MilkyWay.jpg') }}" alt="Milky Way">
 
@@ -10,31 +11,31 @@
 
         <div class="bookingContainerTop">
 
-            <div class="cardBookingTop">
+            <a href="{{ path('app_resort_form') }}" class="cardBookingTop"">
                 <i class="fas fa-map-marker-alt"></i>
                 <h2 class="titleBook">Resorts</h2>
-            </div>
+            </a>            
 
             <div class="separateBookingTop"></div>
 
-            <div class="cardBookingTop">
+            <a href="#" class="cardBookingTop">
                 <i class="fa-solid fa-house"></i>
                 <h2 class="titleBook">Accomodation</h2>
-            </div>
+            </a>
 
             <div class="separateBookingTop"></div>
 
-            <div class="cardBookingTop">
+            <a href="#" class="cardBookingTop">
                 <i class="fa-solid fa-calendar-days"></i>
                 <h2 class="titleBook">Length of stay</h2>
-            </div>
+            </a>
 
             <div class="separateBookingTop"></div>
 
-            <div class="cardBookingTop">
+            <a href="#" class="cardBookingTop">
                 <i class="fa-solid fa-list"></i>
                 <h2 class="titleBook">Extra programs</h2>
-            </div>
+            </a>
 
         </div>
 
@@ -46,31 +47,31 @@
 
         <div class="bookingContainerBottom">
 
-            <div class="cardBookingBottom">
+            <a href="#" class="cardBookingBottom">
                 <i class="fa-solid fa-suitcase-rolling"></i>
                 <h2 class="titleBook">Number of travelers</h2>
-            </div>
+            </a>
 
             <div class="separateBookingBottom"></div>
 
-            <div class="cardBookingBottom">
+            <a href="#" class="cardBookingBottom">
                 <i class="fa-solid fa-circle-info"></i>
                 <h2 class="titleBook">Customer support</h2>
-            </div>
+            </a>
 
             <div class="separateBookingBottom"></div>
 
-            <div class="cardBookingBottom">
+            <a href="#" class="cardBookingBottom">
                 <i class="fa-solid fa-user"></i>
                 <h2 class="titleBook">User dashboard</h2>
-            </div>
+            </a>
 
             <div class="separateBookingBottom"></div>
 
-            <div class="cardBookingBottom">
+            <a href="#" class="cardBookingBottom">
                 <i class="fa-regular fa-circle-check"></i>
                 <h2 class="titleBook">Book</h2>
-            </div>
+            </a>
 
         </div>
 
@@ -93,6 +94,11 @@
         width: 120%;
         height: 100vh;
         z-index: -1;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
     }
 
     .bookingContainer {
@@ -221,4 +227,24 @@
         background: linear-gradient(to bottom, #ffffff, #ffffff00);
     }
 </style>
+
+
+
+<script>
+    function openModal() {
+        document.getElementById('resortModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('resortModal').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+        var modal = document.getElementById('resortModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+</script>
+
 {% endblock %}
