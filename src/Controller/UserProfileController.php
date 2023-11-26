@@ -22,6 +22,7 @@ class UserProfileController extends AbstractController
     #[Route('/profile', name: 'app_profile')]
     public function index(Request $request): Response
     {
+
         // Obtenez l'utilisateur actuellement connecté
         $user = $this->getUser();
 

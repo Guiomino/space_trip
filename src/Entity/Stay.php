@@ -32,21 +32,42 @@ class Stay
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $total_amount = null;
 
+
     #[ORM\ManyToOne(inversedBy: 'stays')]
     #[ORM\JoinColumn(nullable: false)]
+    /**
+     * @ORM\ManyToOne(targetEntity="Resort", inversedBy="stays", cascade={"persist"})
+     * @ORM\JoinColumn(name="resort_id", referencedColumnName="id", nullable=false)
+     */
     private ?Resort $resort = null;
 
+
     #[ORM\ManyToOne(inversedBy: 'stays')]
     #[ORM\JoinColumn(nullable: false)]
+    /**
+     * @ORM\ManyToOne(targetEntity="ExtraActivities", inversedBy="stays", cascade={"persist"})
+     * @ORM\JoinColumn(name="extra_activities_id", referencedColumnName="id", nullable=false)
+     */
     private ?ExtraActivities $extra_activities = null;
 
-    #[ORM\ManyToOne(inversedBy: 'stays')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Accommodation $accommodation = null;
 
     #[ORM\ManyToOne(inversedBy: 'stays')]
     #[ORM\JoinColumn(nullable: false)]
+    /**
+     * @ORM\ManyToOne(targetEntity="Accommodation", inversedBy="stays", cascade={"persist"})
+     * @ORM\JoinColumn(name="accommodation_id", referencedColumnName="id", nullable=false)
+     */
+    private ?Accommodation $accommodation = null;
+
+
+    #[ORM\ManyToOne(inversedBy: 'stays')]
+    #[ORM\JoinColumn(nullable: false)]
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="stays", cascade={"persist"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
     private ?User $user = null;
+
 
     public function getId(): ?int
     {

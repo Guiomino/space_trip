@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="btnComponents">
-                    {% include 'components/button.html.twig' with {'textBtn': 'Summary', 'linkUrl': '#'} %}
+                    {% include 'components/button.html.twig' with {'textBtn': 'Summary', 'linkUrl': '/stay'} %}
                 </div>
 
             </div>
@@ -137,7 +137,7 @@
 
                     <div class="detailSection">
                         <i class="fa-solid fa-house"></i>
-                        <p>ACCOMODATION : Texte dynamique</p>
+                        <p>ACCOMMODATION : Texte dynamique</p>
                     </div>
 
                     <div class="detailSection">
@@ -183,6 +183,9 @@
                     <div class="detailSection">
                         <i class="fa-regular fa-envelope"></i>
                         <p>Post : Av. Jean Gonord 31500 Toulouse</p>
+                    </div>
+                    <div class="btnComponents">
+                        {% include 'components/button.html.twig' with {'textBtn': 'Book', 'linkUrl': '/booking'} %}
                     </div>
                     {% endblock %}
                 </div>

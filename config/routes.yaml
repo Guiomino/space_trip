@@ -3,3 +3,8 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+get_starting_price:
+    path: '/stay/get_starting_price/{id}'
+    controller: 'App\Controller\StayController::getStartingPrice'
+    methods: ['GET']
