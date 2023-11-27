@@ -2,6 +2,7 @@
 
 {% extends 'base.html.twig' %}
 {% import 'components/button.html.twig' as button %}
+{% import 'components/footer.html.twig' as footer %}
 
 {% block title %}Liste des Resorts{% endblock %}
 
@@ -72,8 +73,12 @@
 </li>
 {% endfor %}
 </ul>
-
 </div>
+{% block footer %}
+{% include 'components/footer.html.twig' %}
+{% endblock %}
+
+
 
 
 <style>

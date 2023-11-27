@@ -3,6 +3,7 @@
 {% import 'components/hero.html.twig' as hero %}
 {% import 'components/subtitles.html.twig' as subtitles %}
 {% import 'components/carouselResort.html.twig' as carouselResort %}
+{% import 'components/footer.html.twig' as footer %}
 
 
 {% block title %}SpaceTrip{% endblock %}
@@ -20,6 +21,10 @@
 
     {% block carouselResort %}
         {% include 'components/carouselResort.html.twig' with {'resorts': resorts} %}
+    {% endblock %}
+
+    {% block footer %}
+        {% include 'components/footer.html.twig' %}
     {% endblock %}
 
 {% endblock %}
