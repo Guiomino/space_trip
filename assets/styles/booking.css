@@ -1,0 +1,146 @@
+body {
+    background-color: #00071F;
+    user-select: none;
+}
+
+.milkyWay {
+    pointer-events: none;
+    position: absolute;
+    mix-blend-mode: color-dodge;
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 100vh;
+    z-index: -1;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.bookingContainer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 803px;
+    height: 401px;
+    /* background: #ffffff15;
+    border: 1px solid #ffffff55; */
+}
+
+.bookingContainerTop,
+.bookingContainerBottom {
+    display: flex;
+}
+
+.bookingContainerTop {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardBookingTop,
+.cardBookingBottom {
+    cursor: pointer;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.cardBookingBottom::before,
+.cardBookingTop::before,
+.cardBookingBottom::after,
+.cardBookingTop::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(1px);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.cardBookingTop:hover::before,
+.cardBookingTop:hover::after,
+.cardBookingBottom:hover::before,
+.cardBookingBottom:hover::after {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.cardBookingTop:not(:hover)::before,
+.cardBookingTop:not(:hover)::after,
+.cardBookingBottom:not(:hover)::before,
+.cardBookingBottom:not(:hover)::after {
+    opacity: 0;
+    transition: opacity 2.4s;
+}
+
+.cardBookingTop::before {
+    background: linear-gradient(to top, #0075FF33, #0075FF00);
+    z-index: 1;
+}
+
+.cardBookingTop::after {
+    background: linear-gradient(to top, #0075FF00, #0075FF00);
+    z-index: -1;
+}
+
+.cardBookingBottom::before {
+    background: linear-gradient(to bottom, #0075FF33, #0075FF00);
+    z-index: 1;
+}
+
+.cardBookingBottom::after {
+    background: linear-gradient(to bottom, #0075FF00, #0075FF00);
+    z-index: -1;
+}
+
+.titleBook {
+    position: relative;
+    z-index: 2;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.cardBookingTop i,
+.cardBookingBottom i {
+    position: relative;
+    z-index: 2;
+    font-size: 20px;
+}
+
+.cardBookingBottom:hover::before,
+.cardBookingTop:hover::before,
+.cardBookingBottom:hover::after,
+.cardBookingTop:hover::after {
+    opacity: 1;
+}
+
+.separateMiddle {
+    width: 803px;
+    height: 1px;
+    background: linear-gradient(to right, #ffffff00, #ffffff, #ffffff00);
+}
+
+.separateBookingTop {
+    width: 1px;
+    height: 200px;
+    background: linear-gradient(to top, #ffffff, #ffffff00);
+}
+
+.separateBookingBottom {
+    width: 1px;
+    height: 200px;
+    background: linear-gradient(to bottom, #ffffff, #ffffff00);
+}

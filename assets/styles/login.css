@@ -1,0 +1,77 @@
+body {
+    background-color: #00071F;
+    user-select: none;
+}
+
+.milkyWay {
+    pointer-events: none;
+    position: absolute;
+    mix-blend-mode: color-dodge;
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 100vh;
+    z-index: -1;
+}
+
+.loginForm {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    gap: 10px;
+    width: 280px;
+    height: 380px;
+    background: radial-gradient(circle at right bottom, #ffffff00, #ffffff15);
+    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    -ms-backdrop-filter: blur(10px);
+    -o-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px #00000055;
+    border: 1px solid #ffffff22;
+}
+
+.loginForm h1,
+.loginForm input {
+    margin-bottom: 10%;
+}
+
+.submitBtn {
+    padding: 6px 22px;
+    background: linear-gradient(to top right, #F33A00, #F3002C);
+    box-shadow: 0px 0px 10px #00000055;
+    border: 1px solid #ffffff22;
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    filter: brightness(1);
+}
+
+.submitBtn:hover {
+    border: 1px solid #ffffff;
+    box-shadow: 0px 5px 15px #ff5272;
+    filter: brightness(2);
+}
+
+.dropAuthForm {
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.dropAuthForm:hover {
+    color: #F33A00;
+}

@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
+
+
+
 {% import 'components/button.html.twig' as button %}
 
 {% block body %}
@@ -99,179 +102,12 @@
 
 
 
-<style>
-    body {
-        background-color: #00071F;
-        user-select: none;
-    }
-
-    .milkyWay {
-        pointer-events: none;
-        position: absolute;
-        mix-blend-mode: color-dodge;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: -1;
-    }
-
-    .stayForm {
-        margin-top: 100px;
-        padding: 20px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        flex-direction: column;
-        border: 1px solid #ffffff15;
-        color: white;
-        background: linear-gradient(to top right, #00C7F3, #0027F3);
-        gap: 20px;
-    }
-
-    .stayForm ul li {
-        margin-bottom: 20px;
-    }
-
-    .headerLineContainer,
-    .resortLineContainer,
-    .accommodationLineContainer,
-    .durationLineContainer,
-    .extraLineContainer {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        gap: 10px;
-    }
-
-    .resortLineContainerLeft,
-    .resortLineContainerRight,
-    .accommodationLineContainerLeft,
-    .accommodationLineContainerRight,
-    .durationLineContainerLeft,
-    .durationLineContainerRight,
-    .extraLineContainerLeft,
-    .extraLineContainerRight {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background: linear-gradient(to top right, #ffffff30, #ffffff15);
-        border: 1px solid #ffffff15;
-        width: 50%;
-        gap: 15px;
-        padding: 10px;
-    }
-
-    @media (max-width: 750px) {
-
-        .stayForm {
-            margin-top: 350px;
-        }
-
-        .headerLineContainer,
-        .resortLineContainer,
-        .accommodationLineContainer,
-        .durationLineContainer,
-        .extraLineContainer {
-            flex-direction: column;
-        }
-
-        .resortLineContainerLeft,
-        .resortLineContainerRight,
-        .accommodationLineContainerLeft,
-        .accommodationLineContainerRight,
-        .durationLineContainerLeft,
-        .durationLineContainerRight,
-        .extraLineContainerLeft,
-        .extraLineContainerRight {
-            width: 100%;
-        }
-    }
-
-    .resortLineContainerLeft,
-    .resortLineContainerRight {
-        height: 100px;
-    }
-
-    .accommodationLineContainerLeft,
-    .accommodationLineContainerRight {
-        height: 40px;
-    }
-
-    .durationLineContainerLeft,
-    .durationLineContainerRight {
-        height: 140px;
-    }
-
-    .extraLineContainerLeft,
-    .extraLineContainerRight {
-        height: 50px;
-    }
-
-    .headerLineContainer h1 {
-        color: white;
-        font-size: 18px;
-    }
-
-
-    .headerLineContainer i {
-        width: 30px;
-        height: 30px;
-        background: linear-gradient(to top right, #F33A00, #F3002C);
-        border-radius: 2px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .dropToBooking {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: linear-gradient(to top right, #F33A00, #F3002C);
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        color: white;
-        border: 1px solid #ffffff22;
-        transition: 0.3s ease;
-    }
-
-    .submitBtn {
-        padding: 6px 22px;
-        background: linear-gradient(to top right, #F33A00, #F3002C);
-        box-shadow: 0px 0px 10px #00000055;
-        border: 1px solid #ffffff22;
-        color: white;
-        font-size: 13px;
-        text-decoration: none;
-        text-transform: uppercase;
-        border-radius: 2px;
-        cursor: pointer;
-        transition: 0.3s ease;
-    }
-
-    .submitBtn:hover,
-    .dropToBooking:hover {
-        border: 1px solid #ffffff;
-        box-shadow: 0px 5px 15px #ff5272;
-    }
-
-    .btn {
-        width: 100%;
-    }
-</style>
 
 
 
 
 
-
-
+<!-- ////////////////////////////////////////// SCRIPT ////////////////////////////////////////// -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const disableSelectOption = (selectField) => {
