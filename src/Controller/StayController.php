@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Accommodation;
 use App\Entity\Resort;
 use App\Entity\Stay;
 use App\Form\StayFormType;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -26,6 +28,16 @@ class StayController extends AbstractController
     }
 
 
+    public function getAccommodationPrice(Accommodation $accommodation)
+    {
+        // Récupérer le price de accommodation
+        $price = $accommodation->getPrice();
+
+        // Retourner le au format JSON
+        return new JsonResponse(['price' => $price]);
+    }
+
+
 
     private EntityManagerInterface $entityManager;
 
@@ -40,12 +52,26 @@ class StayController extends AbstractController
         $stay = new Stay();
         $form = $this->createForm(StayFormType::class, $stay);
 
+
+
         $resort = $stay->getResort();
         if ($resort) {
             $startingPrice = $resort->getStartingPrice();
             // Transmettez le prix de départ au formulaire
             $form->get('starting_price')->setData($startingPrice);
         }
+
+
+
+
+        $accommodation = $stay->getAccommodation();
+        if ($accommodation) {
+            $price = $accommodation->getPrice();
+            $form->get('accommodation_price')->setData($price);
+        }
+
+
+
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

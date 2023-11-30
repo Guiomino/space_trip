@@ -1,0 +1,78 @@
+{# templates/accommodation_form/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+{% import 'components/button.html.twig' as button %}
+
+{% block title %}Accommodation Form{% endblock %}
+
+{% block body %}
+<img class="milkyWayAccommodation" src="{{ asset('img/MilkyWay.jpg') }}" alt="Milky Way">
+
+
+<div class="accommodationFormContainer">
+
+    <div class="accommodationForm">
+
+        <div class="accommodationFormTitle">
+            <i class="fa-solid fa-bed"></i>
+            <h1>Choose your type of suite</h1>
+        </div>
+
+
+        <form class="accommodationFormulaire" method="post" action="{{ path('app_booking') }}">
+
+
+            {% for accommodation in accommodations %}
+            <div class="accommodationColumn">
+
+
+                <div class="accommodationLeft">
+                    <h3>{{ accommodation.name }}</h3>
+                    <img src="{{ asset('img/accommodations/' ~ accommodation.image) }}" alt="{{ accommodation.name }}">
+                </div>
+
+
+
+                <div class="separateAccomodation"></div>
+
+
+
+                <div class="accommodationMiddle">
+                    <div class="accommodationDescription">
+                        <h3>> Description : </h3>
+                        <p>{{ accommodation.description }}</p>
+                    </div>
+                </div>
+
+
+
+                <div class="separateAccomodation"></div>
+
+
+
+                <div class="accommodationRight">
+                    <div class="accommodationArea">
+                        <h4>> Area : </h4>
+                        <p>{{ accommodation.area }} m²</p>
+                    </div>
+                    <div class="accommodationPrice">
+                        <h4>> Price : </h4>
+                        <p>{{ accommodation.price }} CC</p>
+                    </div>
+                    <button type="submit" name="selectedAccommodation" class="submitBtn" value="{{ accommodation.id }}">
+                        Confirm
+                    </button>
+                </div>
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </form>
+    </div>
+    <a class="dropToBooking" href="{{ path('app_booking') }}"><i class="fa-solid fa-power-off"></i></a>
+</div>
+
+{% endblock %}

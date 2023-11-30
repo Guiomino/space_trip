@@ -31,25 +31,19 @@
         <div class="resortLineContainerRight">
             <div id="startingPriceContainer">
                 {% if form.starting_price is defined %}
-                Starting Price: <span id="dynamicStartingPrice">{{ form.starting_price.vars.data }} CC</span>
+                Starting Price: <span id="dynamicStartingPrice"></span>
                 {% endif %}
             </div>
 
             <div id="totalPriceContainer">
-                {% if form.vars.value.starting_price is defined and form.vars.value.number_of_travelers is defined %}
-                Total Price:
-                <span id="dynamicTotalPrice">
-                    {{ (form.vars.value.starting_price * form.vars.value.number_of_travelers)|number_format(2, '.', ',')
-                    }} CC
-                </span>
+                {% if form.starting_price is defined %}
+                Total Price: <span id="dynamicTotalPrice"></span>
                 {% endif %}
             </div>
-
-
-
-
         </div>
     </div>
+
+
 
 
     <div class="accommodationLineContainer">
@@ -58,9 +52,14 @@
         </div>
 
         <div class="accommodationLineContainerRight">
-            {{ form_row(form.accommodation_price) }}
+            {% if form.accommodation_price is defined %}
+            Accommodation Price: <span id="dynamicAccommodationPrice"></span>
+            {% endif %}
         </div>
     </div>
+
+
+
 
 
     <div class="durationLineContainer">
@@ -124,13 +123,28 @@
             });
         };
 
+
+
+
+        // Selecteurs des champs du formulaire
         const resortField = document.querySelector('[data-id="form_resort"]');
         const numberOfTravelersField = document.querySelector('[data-id="form_number_of_travelers"]');
+        const accommodationField = document.querySelector('[data-id="form_accommodation"]');
+
+        // Boites a remplir avec les données selectionnées dynamiquement
         const dynamicStartingPriceSpan = document.getElementById('dynamicStartingPrice');
+        const dynamicTotalPriceSpan = document.getElementById('dynamicTotalPrice');
+        const dynamicAccommodationPriceSpan = document.getElementById('dynamicAccommodationPrice');
 
-        if (resortField && dynamicStartingPriceSpan) {
-            disableSelectOption(resortField);
 
+
+        // La condition vérifie la présence des fields et de leurs boites respectives
+        if (resortField && dynamicStartingPriceSpan && numberOfTravelersField && dynamicTotalPriceSpan && accommodationField && dynamicAccommodationPriceSpan) {
+            disableSelectOption(resortField && numberOfTravelersField && accommodationField);
+
+
+
+            // Écoute les changements du selecteur de resort
             resortField.addEventListener('change', function () {
                 // Récupérer la valeur sélectionnée du resort
                 const selectedResortId = resortField.value;
@@ -141,12 +155,57 @@
                     .then(data => {
                         // Mettre à jour dynamiquement le contenu du dynamicStartingPriceSpan
                         dynamicStartingPriceSpan.textContent = data.startingPrice + ' CC';
+                        // Passe plat pour garder la valeur du prix sans le "CC"
+                        dynamicStartingPriceSpan.dataset.value = data.startingPrice
+                        dynamicTotalPriceSpan.textContent = data.startingPrice + ' CC';
                     })
                     .catch(error => {
                         console.error('Erreur lors de la récupération du starting_price :', error);
+
                     });
             });
+
+
+
+
+            // Écoute les changements du selecteur du nombre de voyageur
+            numberOfTravelersField.addEventListener('change', function () {
+                dynamicTotalPriceSpan.textContent = (dynamicStartingPriceSpan.dataset.value * numberOfTravelersField.value) + ' CC'
+            });
+
+
+
+
+
+            // Écoute les changements du selecteur de Accommodation
+            accommodationField.addEventListener('change', function () {
+                // Récupérer la valeur sélectionnée de ;
+                const selectedAccommodationId = accommodationField.value;
+
+                // Faire une requête AJAX pour récupérer le price du accommodation sélectionné
+                fetch('{{ path('get_accommodation_price', {'id': '__id__'}) }}'.replace('__id__', selectedAccommodationId))
+                    .then(response => response.json())
+                    .then(data => {
+                        // Mettre à jour dynamiquement le contenu du dynamicAccommodationPriceSpan
+                        dynamicAccommodationPriceSpan.textContent = data.price + ' CC';
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de la récupération du price :', error);
+                    });
+            });
+
+
+
+
         } else {
+            console.error('Les éléments suivants sont null :', {
+                resortField,
+                dynamicStartingPriceSpan,
+                numberOfTravelersField,
+                dynamicTotalPriceSpan,
+                accommodationField,
+                dynamicAccommodationPriceSpan,
+            });
             console.error('Les éléments resortField ou dynamicStartingPriceSpan sont null.');
         }
 
@@ -155,10 +214,6 @@
         }
     });
 </script>
-
-
-
-
 
 
 

@@ -14,3 +14,5 @@ import './styles/booking.css';
 import './styles/resort.css';
 import './styles/dashboard.css';
 import './styles/user_profile.css';
+import './styles/resort_form.css';
+import './styles/accommodation_form.css';

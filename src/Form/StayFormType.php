@@ -64,25 +64,34 @@ class StayFormType extends AbstractType
 
 
 
-            // ->add('accommodation', EntityType::class, [
-            //     'class' => Accommodation::class,
-            //     'choice_label' => function (Accommodation $accommodation) {
-            //         return sprintf('%s - %s CC', $accommodation->getName(), $accommodation->getPrice());
-            //     },
-            // ])
+
+
+
             ->add('accommodation', EntityType::class, [
                 'class' => Accommodation::class,
                 'choice_label' => function (Accommodation $accommodation) {
                     return $accommodation->getName();
                 },
+                'placeholder' => 'Select',
+                'attr' => [
+                    'data-id' => 'form_accommodation',
+                ],
+                'constraints' => [
+                    new NotBlank(),
+                ],
             ])
-            ->add('accommodation_price', EntityType::class, [
-                'class' => Accommodation::class,
+            ->add('accommodation_price', TextType::class, [
                 'mapped' => false,
-                'choice_label' => function (Accommodation $accommodation) {
-                    return sprintf('%s CC', $accommodation->getPrice());
-                },
+                'required' => false,
+                'attr' => [
+                    'readonly' => true,
+                    'id' => 'accommodationPrice',
+                ],
             ])
+
+
+
+
 
 
             ->add('duration_weeks', ChoiceType::class, [

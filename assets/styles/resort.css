@@ -54,13 +54,25 @@ li:first-child {
     margin-bottom: 50px;
 }
 
+@media only screen and (max-width: 750px) {
+    .titleContainer {
+        align-items: center;
+        text-align: center;
+        text-size-adjust: 10%;
+    }
+
+    .changeResortBtn {
+        gap: 50px;
+    }
+}
+
 .changeResortBtn {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
 
-button {
+.changeResortBtn button {
     font-size: 16px;
     background: none;
     border: none;
@@ -69,7 +81,7 @@ button {
     cursor: pointer;
     transition: 0.3s;
 }
-button:hover {
+.changeResortBtn button:hover {
     text-shadow: 0px 0px 4px #fff;
 }
 
@@ -90,6 +102,20 @@ button:hover {
     align-items: center;
     width: 100%;
 }
+
+@media only screen and (max-width: 750px) {
+    .titleResort {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .bookBtn {
+        margin: auto;
+    }
+}
+
 
 .picto {
     color: white;
@@ -129,6 +155,13 @@ button:hover {
 
 .infoContainer {
     display: flex;
+}
+
+@media only screen and (max-width: 750px) {
+    .infoContainer {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
 
 .startingPriceContainer {
