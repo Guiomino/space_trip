@@ -3,22 +3,28 @@ body {
     user-select: none;
 }
 
-.milkyWay {
+.milkyWayStay {
     pointer-events: none;
     position: absolute;
     mix-blend-mode: color-dodge;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
     width: 100%;
     z-index: -1;
 }
+
+
+
 
 .stayForm {
     width: 600px;
     margin-top: 100px;
     padding: 20px;
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -33,10 +39,35 @@ body {
     margin-bottom: 20px;
 }
 
+.stayForm label {
+    margin-right: 10px;
+}
+
+.stayForm form {
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
 .stayForm span {
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 900;
     text-shadow: 0px 0px 12px #F33A00;
 }
+
+.stayForm select {
+    border-radius: 3px;
+    box-shadow: 0px 2px 10px #00000030;
+}
+
+
+
+
+#startingPriceContainer, #totalPriceContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 
 .headerLineContainer,
 .resortLineContainer,
@@ -168,4 +199,8 @@ body {
 
 .btn {
     width: 100%;
+}
+
+.convertUSD {
+    font-size: 12px;
 }

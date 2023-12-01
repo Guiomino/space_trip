@@ -54,13 +54,17 @@ class StayFormType extends AbstractType
             ])
 
             ->add('starting_price', TextType::class, [
-                'mapped' => false, // Ce champ n'est pas mappé à l'entité Stay
-                'required' => false, // Vous pouvez définir cela en fonction de vos besoins
+                'mapped' => false,
+                'required' => false,
                 'attr' => [
                     'readonly' => true, // Pour éviter que l'utilisateur ne modifie manuellement le champ
                     'id' => 'startingPrice', // ID pour référencer dans le JavaScript
                 ],
             ])
+
+
+
+
 
 
 
@@ -94,6 +98,12 @@ class StayFormType extends AbstractType
 
 
 
+
+
+
+
+
+
             ->add('duration_weeks', ChoiceType::class, [
                 'choices' => [
                     '1 week' => 1,
@@ -104,6 +114,10 @@ class StayFormType extends AbstractType
                     '6 weeks' => 6,
                     '7 weeks' => 7,
                     '8 weeks' => 8,
+                ],
+                'placeholder' => 'Select',
+                'attr' => [
+                    'data-id' => 'form_duration_weeks',
                 ],
                 'constraints' => [
                     new NotBlank(),
@@ -122,10 +136,27 @@ class StayFormType extends AbstractType
                 ],
             ])
 
-            ->add('price_depend', TextType::class, [
-                'label' => 'Price depend : The number of weeks and the number of travelers',
-                'mapped' => false,
+
+
+
+
+
+
+            ->add('date_time', DateTimeType::class, [
+                'widget' => 'single_text',
+                'input' => 'datetime',
+                'required' => true,
+                'attr' => [
+                    'readonly' => true,
+                ],
             ])
+
+
+
+
+
+
+
 
 
 

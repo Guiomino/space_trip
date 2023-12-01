@@ -1,0 +1,23 @@
+{# templates/stay/confirmation.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% import 'components/button.html.twig' as button %}
+
+{% block body %}
+
+<div class="confirmationContainer">
+
+    <div class="confirmationTitle">
+        <i class="fa-regular fa-calendar-check"></i>
+        <h1>Stay Confirmation</h1>
+    </div>
+    <p>Your reservation has been confirmed successfully !</p>
+
+
+    {% block button %}
+    {% include 'components/button.html.twig' with {'textBtn': 'main page', 'linkUrl': '/'} %}
+    {% endblock %}
+
+</div>
+
+{% endblock %}

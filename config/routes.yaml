@@ -4,6 +4,7 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+
 get_starting_price:
     path: '/stay/get_starting_price/{id}'
     controller: 'App\Controller\StayController::getStartingPrice'
@@ -12,4 +13,10 @@ get_starting_price:
 get_accommodation_price:
     path: '/stay/get_accommodation_price/{id}'
     controller: 'App\Controller\StayController::getAccommodationPrice'
+    methods: ['GET']
+
+
+app_stay_confirmation:
+    path: '/stay/confirmation'
+    controller: 'App\Controller\StayController::confirmation'
     methods: ['GET']

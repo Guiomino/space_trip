@@ -1,0 +1,38 @@
+.confirmationContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+
+.confirmationTitle {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.confirmationTitle i {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(to top right, #F33A00, #F3002C);
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 500px) {
+    .confirmationTitle {
+        flex-direction: column;
+    }
+}

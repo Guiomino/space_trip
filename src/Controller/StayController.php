@@ -6,7 +6,6 @@ use App\Entity\Accommodation;
 use App\Entity\Resort;
 use App\Entity\Stay;
 use App\Form\StayFormType;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,6 +15,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StayController extends AbstractController
 {
+
+
+
+
+    public function confirmation(): Response
+    {
+        return $this->render('stay_confirmation/index.html.twig');
+    }
+
 
 
     public function getStartingPrice(Resort $resort)
@@ -54,6 +62,8 @@ class StayController extends AbstractController
 
 
 
+
+
         $resort = $stay->getResort();
         if ($resort) {
             $startingPrice = $resort->getStartingPrice();
@@ -75,10 +85,14 @@ class StayController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+
+            $stay->setUser($user);
+
             $this->entityManager->persist($stay);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_stay');
+            return $this->redirectToRoute('app_stay_confirmation');
         }
 
         return $this->render('stay/index.html.twig', [

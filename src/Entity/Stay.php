@@ -26,8 +26,20 @@ class Stay
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $check_out = null;
 
+
+
+
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_time = null;
+    public function __construct()
+    {
+        // Initialiser date_time à la date du jour lors de la création de l'objet
+        $this->date_time = new \DateTime();
+    }
+
+
+
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $total_amount = null;

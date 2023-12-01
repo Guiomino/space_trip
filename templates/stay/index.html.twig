@@ -6,7 +6,7 @@
 {% import 'components/button.html.twig' as button %}
 
 {% block body %}
-<img class="milkyWay" src="{{ asset('img/MilkyWay.jpg') }}" alt="Milky Way">
+<img class="milkyWayStay" src="{{ asset('img/MilkyWay.jpg') }}" alt="Milky Way">
 
 <div class="stayForm">
     {{ form_start(form) }}
@@ -15,6 +15,7 @@
     <div class="headerLineContainer">
         <i class="fa-solid fa-rocket"></i>
         <h1>Your personalized stay</h1>
+        {{ form_widget(form.date_time) }}
     </div>
 
 
@@ -23,7 +24,7 @@
             {{ form_row(form.resort) }}
             {{ form_row(form.number_of_travelers) }}
             <div class="btn">
-                {% include 'components/button.html.twig' with {'textBtn': 'See others resorts', 'linkUrl': '/resorts'}
+                {% include 'components/button.html.twig' with {'textBtn': 'Others resorts', 'linkUrl': '/resorts'}
                 %}
             </div>
         </div>
@@ -31,13 +32,13 @@
         <div class="resortLineContainerRight">
             <div id="startingPriceContainer">
                 {% if form.starting_price is defined %}
-                Starting Price: <span id="dynamicStartingPrice"></span>
+                Starting Price per person :<span id="dynamicStartingPrice"></span>
                 {% endif %}
             </div>
 
             <div id="totalPriceContainer">
                 {% if form.starting_price is defined %}
-                Total Price: <span id="dynamicTotalPrice"></span>
+                Price according to number :<span id="dynamicNumberOfTravelersPrice"></span>
                 {% endif %}
             </div>
         </div>
@@ -70,7 +71,13 @@
         </div>
 
         <div class="durationLineContainerRight">
-            {{ form_row(form.price_depend) }}
+            {% if form.duration_weeks is defined %}
+            Price depend :
+            </br>
+            . The number of weeks
+            </br>
+            . The number of travellers <span id="dynamicNumberOfWeeksPrice"></span>
+            {% endif %}
         </div>
 
     </div>
@@ -93,6 +100,11 @@
     {{ form_row(form.submit) }}
 
     {{ form_end(form) }}
+
+    <div class="convertUSD">
+        <p>1 CC (Crimson Coin) = 0,125USD</p>
+        <p>1 USD american dollar = 8 CC</p>
+    </div>
 
     <a class="dropToBooking" href="{{ path('app_dashboard') }}"><i class="fa-solid fa-power-off"></i></a>
 
@@ -130,17 +142,23 @@
         const resortField = document.querySelector('[data-id="form_resort"]');
         const numberOfTravelersField = document.querySelector('[data-id="form_number_of_travelers"]');
         const accommodationField = document.querySelector('[data-id="form_accommodation"]');
+        const durationWeeksField = document.querySelector('[data-id="form_duration_weeks"]');
+
 
         // Boites a remplir avec les données selectionnées dynamiquement
         const dynamicStartingPriceSpan = document.getElementById('dynamicStartingPrice');
-        const dynamicTotalPriceSpan = document.getElementById('dynamicTotalPrice');
+        const dynamicNumberOfTravelersPriceSpan = document.getElementById('dynamicNumberOfTravelersPrice');
         const dynamicAccommodationPriceSpan = document.getElementById('dynamicAccommodationPrice');
+        const dynamicNumberOfWeeksPriceSpan = document.getElementById('dynamicNumberOfWeeksPrice');
 
 
 
         // La condition vérifie la présence des fields et de leurs boites respectives
-        if (resortField && dynamicStartingPriceSpan && numberOfTravelersField && dynamicTotalPriceSpan && accommodationField && dynamicAccommodationPriceSpan) {
-            disableSelectOption(resortField && numberOfTravelersField && accommodationField);
+        if (resortField && dynamicStartingPriceSpan && numberOfTravelersField && dynamicNumberOfTravelersPriceSpan && accommodationField && dynamicAccommodationPriceSpan && durationWeeksField && dynamicNumberOfWeeksPriceSpan) {
+            disableSelectOption(resortField);
+            disableSelectOption(numberOfTravelersField);
+            disableSelectOption(accommodationField);
+            disableSelectOption(durationWeeksField);
 
 
 
@@ -157,7 +175,7 @@
                         dynamicStartingPriceSpan.textContent = data.startingPrice + ' CC';
                         // Passe plat pour garder la valeur du prix sans le "CC"
                         dynamicStartingPriceSpan.dataset.value = data.startingPrice
-                        dynamicTotalPriceSpan.textContent = data.startingPrice + ' CC';
+                        dynamicNumberOfTravelersPriceSpan.textContent = data.startingPrice + ' CC';
                     })
                     .catch(error => {
                         console.error('Erreur lors de la récupération du starting_price :', error);
@@ -170,7 +188,7 @@
 
             // Écoute les changements du selecteur du nombre de voyageur
             numberOfTravelersField.addEventListener('change', function () {
-                dynamicTotalPriceSpan.textContent = (dynamicStartingPriceSpan.dataset.value * numberOfTravelersField.value) + ' CC'
+                dynamicNumberOfTravelersPriceSpan.textContent = (dynamicStartingPriceSpan.dataset.value * numberOfTravelersField.value) + ' CC'
             });
 
 
@@ -197,20 +215,29 @@
 
 
 
+
+            // Écoute les changements du selecteur du nombre de semaines
+            durationWeeksField.addEventListener('change', function () {
+                dynamicNumberOfWeeksPriceSpan.textContent = ((parseFloat(dynamicNumberOfTravelersPriceSpan.textContent) * durationWeeksField.value) + parseFloat(dynamicAccommodationPriceSpan.textContent)) + ' CC';
+            });
+
+
+
+
+
         } else {
             console.error('Les éléments suivants sont null :', {
                 resortField,
                 dynamicStartingPriceSpan,
                 numberOfTravelersField,
-                dynamicTotalPriceSpan,
+                dynamicNumberOfTravelersPriceSpan,
                 accommodationField,
                 dynamicAccommodationPriceSpan,
+                durationWeeksField,
+                dynamicNumberOfWeeksPriceSpan,
+
             });
             console.error('Les éléments resortField ou dynamicStartingPriceSpan sont null.');
-        }
-
-        if (numberOfTravelersField) {
-            disableSelectOption(numberOfTravelersField);
         }
     });
 </script>
