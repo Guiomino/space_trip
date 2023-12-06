@@ -1,27 +1,26 @@
 <?php
-    // src/Controller/UserDashboardController.php
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
+use App\Repository\StayRepository;
 
 class UserDashboardController extends AbstractController
 {
     /**
      * @Route("/dashboard", name="user_dashboard")
      */
-    #[Route('/dashboard', name: 'app_dashboard')]
-    public function dashboard(UserRepository $userRepository): Response
+    public function dashboard(UserRepository $userRepository, StayRepository $stayRepository): Response
     {
-        // Récupérez l'utilisateur actuel (par exemple, l'utilisateur connecté)
         $user = $this->getUser();
+        $userStays = $stayRepository->findBy(['user' => $user]);
 
-        // Si vous avez un ID d'utilisateur spécifique, vous pouvez le récupérer depuis la base de données
-        // $user = $userRepository->find($userId); // Remplacez $userId par l'ID de l'utilisateur que vous souhaitez afficher
-
-        // Passez l'utilisateur à la vue
-        return $this->render('user_dashboard/dashboard.html.twig', ['user' => $user]);
+        return $this->render('user_dashboard/dashboard.html.twig', [
+            'user' => $user,
+            'userStays' => $userStays,
+        ]);
     }
 }

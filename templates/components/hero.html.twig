@@ -12,11 +12,11 @@
             <span>PERSONALIZED</span>
             <span>SPACE JOURNEY</span>
         </h1>
-        <h1 id="slogan1">
+        <p id="slogan1">
             <span>YOUR</span>
             <span>PERSONALIZED</span>
             <span>SPACE JOURNEY</span>
-        </h1>
+        </p>
     </div>
 
     <div class="homeSubtitle">
@@ -42,8 +42,8 @@
 
     {% block button %}
     <div class="buttonHero">
-        {% include 'components/button.html.twig' with {'textBtn': 'Resorts', 'linkUrl': '/resorts'} %}
-        {% include 'components/button.html.twig' with {'textBtn': 'Book now', 'linkUrl': '/booking'} %}
+         {% include 'components/button.html.twig' with {'textBtn': 'Resorts', 'linkUrl': '/resorts', 'title': 'Direction page Resorts'} %}
+        {% include 'components/button.html.twig' with {'textBtn': 'Book now', 'linkUrl': '/booking', 'title': 'Direction page Booking'} %}
     </div>
     {% endblock %}
 </div>

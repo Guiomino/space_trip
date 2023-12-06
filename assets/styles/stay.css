@@ -12,10 +12,15 @@ body {
     bottom: 0;
     right: 0;
     margin: auto;
-    width: 100%;
+    width: 150%;
     z-index: -1;
 }
 
+@media (max-width: 750px) {
+    .milkyWayStay {
+        display: none;
+    }
+}
 
 
 
@@ -31,8 +36,9 @@ body {
     flex-direction: column;
     border: 1px solid #ffffff15;
     color: white;
-    background: linear-gradient(to top right, #00C7F3, #0027F3);
+    background: linear-gradient(to top right, #ffffff30, #ffffff15);
     gap: 20px;
+    backdrop-filter: blur(20px);
 }
 
 .stayForm ul li {
@@ -63,7 +69,8 @@ body {
 
 
 
-#startingPriceContainer, #totalPriceContainer {
+#startingPriceContainer,
+#totalPriceContainer {
     display: flex;
     flex-direction: column;
 }
@@ -203,4 +210,8 @@ body {
 
 .convertUSD {
     font-size: 12px;
+}
+
+.formDisplayNone {
+    display: none;
 }

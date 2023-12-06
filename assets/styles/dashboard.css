@@ -36,7 +36,7 @@ body {
 .dashboardContainer {
     margin: 100px 30px 20px 30px;
     /* height: 100vh; */
-    gap: 20px;
+    gap: 10px;
     display: flex;
     justify-content: center;
 }
@@ -185,7 +185,7 @@ body {
 .titleSection {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
@@ -198,7 +198,7 @@ body {
 .detailSection {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: start;
     font-size: 12px;
 }
 
@@ -213,7 +213,6 @@ body {
     border-radius: 2px;
     box-shadow: 0px 4px 12px #00000055;
     border: 1px solid #ffffff22;
-
 }
 
 .detailSection i,
@@ -227,6 +226,9 @@ body {
     margin-right: 10px;
     background: linear-gradient(to top right, #F33A00, #F3002C);
     border-radius: 2px;
+}
+.detailSection span {
+    font-weight: 800;
 }
 
 

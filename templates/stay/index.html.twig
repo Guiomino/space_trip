@@ -12,6 +12,8 @@
     {{ form_start(form) }}
     {{ form_errors(form) }}
 
+
+
     <div class="headerLineContainer">
         <i class="fa-solid fa-rocket"></i>
         <h1>Your personalized stay</h1>
@@ -19,20 +21,21 @@
     </div>
 
 
+
+
     <div class="resortLineContainer">
         <div class="resortLineContainerLeft">
             {{ form_row(form.resort) }}
             {{ form_row(form.number_of_travelers) }}
-            <div class="btn">
-                {% include 'components/button.html.twig' with {'textBtn': 'Others resorts', 'linkUrl': '/resorts'}
-                %}
-            </div>
+     
         </div>
 
         <div class="resortLineContainerRight">
             <div id="startingPriceContainer">
                 {% if form.starting_price is defined %}
-                Starting Price per person :<span id="dynamicStartingPrice"></span>
+                <p>
+                Starting Price per person : <span id="dynamicStartingPrice"></span>
+                </p>
                 {% endif %}
             </div>
 
@@ -94,15 +97,27 @@
     </div>
 
 
-    {{ form_row(form.total_amount) }}
-
+    <div class="totalAmountStay">
+        <p>Total price of your stay</p>
+        <p id="totalAmountStay">
+            {{ form_widget(form.total_amount) }}
+        </p>
+    </div>
 
     {{ form_row(form.submit) }}
+
+
+    <!-- // Cacher les partie de form que j'ai aps besoin d'afficher -->
+    <div class="formDisplayNone">
+        {{ form_row(form.starting_price) }}
+        {{ form_row(form.accommodation_price) }}
+    </div>
+
 
     {{ form_end(form) }}
 
     <div class="convertUSD">
-        <p>1 CC (Crimson Coin) = 0,125USD</p>
+        <p>1 CC (Crimson Coin) = 0,125 USD</p>
         <p>1 USD american dollar = 8 CC</p>
     </div>
 
@@ -144,17 +159,18 @@
         const accommodationField = document.querySelector('[data-id="form_accommodation"]');
         const durationWeeksField = document.querySelector('[data-id="form_duration_weeks"]');
 
-
         // Boites a remplir avec les données selectionnées dynamiquement
         const dynamicStartingPriceSpan = document.getElementById('dynamicStartingPrice');
         const dynamicNumberOfTravelersPriceSpan = document.getElementById('dynamicNumberOfTravelersPrice');
         const dynamicAccommodationPriceSpan = document.getElementById('dynamicAccommodationPrice');
         const dynamicNumberOfWeeksPriceSpan = document.getElementById('dynamicNumberOfWeeksPrice');
 
+        const dynamicTotalAmountStaySpan = document.getElementById('totalAmountStay');
+
 
 
         // La condition vérifie la présence des fields et de leurs boites respectives
-        if (resortField && dynamicStartingPriceSpan && numberOfTravelersField && dynamicNumberOfTravelersPriceSpan && accommodationField && dynamicAccommodationPriceSpan && durationWeeksField && dynamicNumberOfWeeksPriceSpan) {
+        if (resortField && dynamicStartingPriceSpan && numberOfTravelersField && dynamicNumberOfTravelersPriceSpan && accommodationField && dynamicAccommodationPriceSpan && durationWeeksField && dynamicNumberOfWeeksPriceSpan && dynamicTotalAmountStaySpan) {
             disableSelectOption(resortField);
             disableSelectOption(numberOfTravelersField);
             disableSelectOption(accommodationField);
@@ -224,6 +240,18 @@
 
 
 
+            // Écoute les changements du prix total de la reservation
+            durationWeeksField.addEventListener('change', function () {
+                const numberOfTravelersPrice = parseFloat(dynamicNumberOfTravelersPriceSpan.textContent);
+                const accommodationPrice = parseFloat(dynamicAccommodationPriceSpan.textContent);
+                const totalAmount = (numberOfTravelersPrice * durationWeeksField.value + accommodationPrice);
+                const totalAmountTTC = parseFloat(totalAmount)
+
+                stay_form_total_amount.value = totalAmountTTC;
+            });
+
+
+
 
         } else {
             console.error('Les éléments suivants sont null :', {
@@ -235,6 +263,7 @@
                 dynamicAccommodationPriceSpan,
                 durationWeeksField,
                 dynamicNumberOfWeeksPriceSpan,
+                dynamicTotalAmountStaySpan,
 
             });
             console.error('Les éléments resortField ou dynamicStartingPriceSpan sont null.');

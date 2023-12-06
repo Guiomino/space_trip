@@ -4,311 +4,298 @@
 
 {% extends 'base.html.twig' %}
 
-{% block title %}Tableau de bord{% endblock %}
-
-
-{% block body %}
-{% block button %}
-<div class="dashboardComplete">
-    <img class="imgDashboard" id="dashboardImage" src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Dashboard image">
-    <div class="imgCoverBottom"></div>
-
-    <div class="dashboardContainer">
-
-        <div class="leftSection">
-            <div class="userInfo">
-                <div class="titleSection">
-                    <i class="fa-solid fa-user"></i>
-                    <p>User informations</p>
-                </div>
-                <a class="imgAvatarLink" id="avatarLink" href="#"><img src="{{ asset('img/Dashboard/avatar_1.jpg') }}"
-                        alt="Avatar"></a>
-
-
-                <div class="informationSection">
-                    <div class="detailSection">
-                        <i class="fa-regular fa-user"></i>
-                        <p>{{ user.getFirstName() ~ ' ' ~ user.getLastName() }}</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-solid fa-user-astronaut"></i>
-                        <p>{{ user.getPseudo() }}</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-solid fa-fingerprint"></i>
-                        <p>{{ user.getId() }}</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-regular fa-flag"></i>
-                        <p>{{ user.getLang() }}</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-solid fa-at"></i>
-                        <p>{{ user.getEmail() }}</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-solid fa-mobile-screen-button"></i>
-                        <p>{{ user.getPhone() }}</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <p>{{ user.getCity() }}</p>
-                    </div>
-                </div>
-
-                <div class="btnComponents">
-                    {% include 'components/button.html.twig' with {'textBtn': 'Edit', 'linkUrl': '/profile'} %}
-                </div>
-
-
-
-            </div>
-
-            <div class="bookingSummary">
-                <div class="titleSection">
-                    <i class="fa-solid fa-calendar-check"></i>
-                    <p>Summary of current booking</p>
-                </div>
-
-                <div class="btnComponents">
-                    {% include 'components/button.html.twig' with {'textBtn': 'Summary', 'linkUrl': '/stay'} %}
-                </div>
-
-            </div>
-        </div>
-
-        <div class="middleSection">
-            <div class="imageContent">
-                <a class="imgDashboardTargeted" id="imageLink" href="#"><img
-                        src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Dashboard Background"></a>
-            </div>
-
-            <div class="commentSection">
-                <div class="titleSection">
-                    <i class="fa-solid fa-comment"></i>
-                    <p>Comment</p>
-                </div>
-
-                <div class="informationSection">
-                    <div class="detailSection">
-                        <i class="fa-regular fa-thumbs-up"></i>
-                        <p>Your experience</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-regular fa-star"></i>
-                        <p>⭐⭐⭐⭐☆</p>
-                        {# Ajoutez système de notation par étoiles #}
-                    </div>
-
-                    <div class="detailSection">
-                        <p>Comment : </br>
-                            This holiday was a feast for the eyes and the senses. It was a unique experience that
-                            transported my wife and I into a nightmarish world, but one that is so appealing that we're
-                            thinking of going back. Maybe to the Frost Ballet or the Nocturnal Enigma. What a choice ! I
-                            wouldn't give it 5 stars because the food isn't very tasty. But I know that there will soon
-                            be new vegetable gardens cultivated on Martian soil. Can't wait to taste it !</p>
-                    </div>
-
-                </div>
-
-                <div class="btnComponents">
-                    {% include 'components/button.html.twig' with {'textBtn': 'Add comment', 'linkUrl': '#'} %}
-                </div>
-
-            </div>
-        </div>
-
-        <div class="rightSection">
-            <div class="bookingHistory">
-                <div class="titleSection">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    <p>Booking history</p>
-                </div>
-
-                <div class="informationSection">
-                    <div class="detailSection">
-                        <i class="fa-regular fa-circle-dot"></i>
-                        <p>RESORT : Texte dynamique</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-solid fa-house"></i>
-                        <p>ACCOMMODATION : Texte dynamique</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-regular fa-calendar"></i>
-                        <p>LENGTH OF STAY : Texte dynamique</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <p>START STAY : Texte dynamique</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="customerSupport">
-                <div class="titleSection">
-                    <i class="fa-solid fa-gear"></i>
-                    <p>Customer support</p>
-                </div>
-
-                <div class="informationSection">
-                    <div class="detailSection">
-                        <i class="fa-regular fa-circle-question"></i>
-                        {% include 'components/button.html.twig' with {'textBtn': 'See the FAQ', 'linkUrl': '#'} %}
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <p>If you cannot find an answer,</br>please contact us :</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-solid fa-at"></i>
-                        <p>Support email : support@spacetrip.com</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-solid fa-phone"></i>
-                        <p>Phone : +012 34 56 789</p>
-                    </div>
-
-                    <div class="detailSection">
-                        <i class="fa-regular fa-envelope"></i>
-                        <p>Post : Av. Jean Gonord 31500 Toulouse</p>
-                    </div>
-                    <div class="btnComponents">
-                        {% include 'components/button.html.twig' with {'textBtn': 'Book', 'linkUrl': '/booking'} %}
-                    </div>
-                    {% endblock %}
-                </div>
-            </div>
-        </div>
-
-
-        <div id="avatarModal" class="modal">
-            <div class="modalContent ">
-                <p>Select your avatar</p>
-                <div class="avatarList">
-                    <img src="{{ asset('img/Dashboard/avatar_1.jpg') }}" alt="Avatar 1"
-                        onclick="changeAvatar(this.src)">
-                    <img src="{{ asset('img/Dashboard/avatar_2.jpg') }}" alt="Avatar 2"
-                        onclick="changeAvatar(this.src)">
-                    <img src="{{ asset('img/Dashboard/avatar_3.jpg') }}" alt="Avatar 3"
-                        onclick="changeAvatar(this.src)">
-                    <img src="{{ asset('img/Dashboard/avatar_4.jpg') }}" alt="Avatar 4"
-                        onclick="changeAvatar(this.src)">
-                    <img src="{{ asset('img/Dashboard/avatar_5.jpg') }}" alt="Avatar 5"
-                        onclick="changeAvatar(this.src)">
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-        <div id="imageModal" class="modal">
-            <div class="modalContent ">
-                <p>Select your background image</p>
-                <div class="imageList">
-                    <img src="{{ asset('img/Dashboard/background_dashboard_1.jpg') }}" alt="Image 1"
-                        onclick="changeImage(this.src)">
-                    <img src="{{ asset('img/Dashboard/background_dashboard_2.jpg') }}" alt="Image 2"
-                        onclick="changeImage(this.src)">
-                    <img src="{{ asset('img/Dashboard/background_dashboard_3.jpg') }}" alt="Image 3"
-                        onclick="changeImage(this.src)">
-                    <img src="{{ asset('img/Dashboard/background_dashboard_4.jpg') }}" alt="Image 4"
-                        onclick="changeImage(this.src)">
-                    <img src="{{ asset('img/Dashboard/background_dashboard_5.jpg') }}" alt="Image 5"
-                        onclick="changeImage(this.src)">
-                    <img src="{{ asset('img/Dashboard/background_dashboard_6.jpg') }}" alt="Image 6"
-                        onclick="changeImage(this.src)">
-                    <img src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Image 7"
-                        onclick="changeImage(this.src)">
-                    <img src="{{ asset('img/Dashboard/background_dashboard_8.jpg') }}" alt="Image 8"
-                        onclick="changeImage(this.src)">
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-</div>
-{% block footer %}
-{% include 'components/footer.html.twig' %}
+{% block title %}Tableau de bord
 {% endblock %}
 
 
+{% block body %}
+	{% block button %}
+		<div class="dashboardComplete">
+			<img class="imgDashboard" id="dashboardImage" src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Dashboard image">
+			<div class="imgCoverBottom"></div>
+
+			<div class="dashboardContainer">
+
+				<div class="leftSection">
+					<div class="userInfo">
+						<div class="titleSection">
+							<i class="fa-solid fa-user"></i>
+							<p>User informations</p>
+						</div>
+						<a class="imgAvatarLink" id="avatarLink" href="#"><img src="{{ asset('img/Dashboard/avatar_1.jpg') }}" alt="Avatar"></a>
 
 
+						<div class="informationSection">
+							<div class="detailSection">
+								<i class="fa-regular fa-user"></i>
+								<p>{{ user.getFirstName() ~ ' ' ~ user.getLastName() }}</p>
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-solid fa-user-astronaut"></i>
+								<p>{{ user.getPseudo() }}</p>
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-solid fa-fingerprint"></i>
+								<p>{{ user.getId() }}</p>
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-regular fa-flag"></i>
+								<p>{{ user.getLang() }}</p>
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-solid fa-at"></i>
+								<p>{{ user.getEmail() }}</p>
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-solid fa-mobile-screen-button"></i>
+								<p>{{ user.getPhone() }}</p>
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-solid fa-map-location-dot"></i>
+								<p>{{ user.getCity() }}</p>
+							</div>
+						</div>
+
+						<div class="btnComponents">
+							{% include 'components/button.html.twig' with {'textBtn': 'Edit', 'linkUrl': '/profile', 'title': 'Modify profile'} %}
+						</div>
 
 
+					</div>
 
-<script>
-    // fenêtre modale
-    var modal = document.getElementById('avatarModal');
-    var backgroundModal = document.getElementById('imageModal');
+					<div class="bookingSummary">
+						<div class="titleSection">
+							<i class="fa-solid fa-calendar-check"></i>
+							<p>book a stay</p>
+						</div>
 
-    // lien img avatar
-    var avatarLink = document.getElementById('avatarLink');
-    var imageLink = document.getElementById('imageLink');
+						<div class="btnComponents">
+							{% include 'components/button.html.twig' with {'textBtn': 'Stay', 'linkUrl': '/stay', 'title': 'Look your summary stay'} %}
+						</div>
+
+					</div>
+				</div>
+
+				<div class="middleSection">
+					<div class="imageContent">
+						<a class="imgDashboardTargeted" id="imageLink" href="#"><img src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Dashboard Background"></a>
+					</div>
+
+					<div class="commentSection">
+						<div class="titleSection">
+							<i class="fa-solid fa-comment"></i>
+							<p>Comment</p>
+						</div>
+
+						<div class="informationSection">
+							<div class="detailSection">
+								<i class="fa-regular fa-thumbs-up"></i>
+								<p>Your experience</p>
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-regular fa-star"></i>
+								<p>⭐⭐⭐⭐☆</p>
+								{# Ajoutez système de notation par étoiles #}
+							</div>
+
+							<div class="detailSection">
+								<p>Comment :
+									<br>
+									This holiday was a feast for the eyes and the senses. It was a unique experience that
+																																																																																																																																																                            transported my wife and I into a nightmarish world, but one that is so appealing that we're
+																																																																																																																																																                            thinking of going back. Maybe to the Frost Ballet or the Nocturnal Enigma. What a choice ! I
+																																																																																																																																																                            wouldn't give it 5 stars because the food isn't very tasty. But I know that there will soon
+																																																																																																																																																                            be new vegetable gardens cultivated on Martian soil. Can't wait to taste it !</p>
+							</div>
+
+						</div>
+
+						<div class="btnComponents">
+							{% include 'components/button.html.twig' with {'textBtn': 'Add comment', 'linkUrl': '#', 'title': 'Add comment'} %}
+						</div>
+
+					</div>
+				</div>
+
+				<div class="rightSection">
+					<div class="bookingHistory">
+						<div class="titleSection">
+							<i class="fa-solid fa-clock-rotate-left"></i>
+							<p>Last booking history</p>
+						</div>
+
+						{% if userStays is not empty %}
+							{% set lastStay = userStays|last %}
+							<div class="informationSection">
+								<div class="detailSection">
+									<i class="fa-regular fa-circle-dot"></i>
+									<p>RESORT ->
+										<span>{{ lastStay.getResort().getName() }}</span>
+									</p>
+								</div>
+
+								<div class="detailSection">
+									<i class="fa-solid fa-house"></i>
+									<p>ACCOMMODATION  ->
+										<span>{{ lastStay.getAccommodation().getName }}</span>
+									</p>
+								</div>
+
+								<div class="detailSection">
+									<i class="fa-regular fa-calendar"></i>
+									<p>LENGTH OF STAY ->
+										<span>{{ lastStay.getDurationWeeks() }}
+											week(s)</span>
+									</p>
+								</div>
+
+								<div class="detailSection">
+									<i class="fa-solid fa-calendar-days"></i>
+									<p>NUMBER of travelers ->
+										<span>{{ lastStay.getNumberOfTravelers() }}
+											Explorer(s)</span>
+									</p>
+								</div>
+
+								<div class="detailSection">
+									<i class="fa-solid fa-barcode"></i>
+									<p>TOTAL AMOUNT ->
+										<span>{{ lastStay.getTotalAmount() }}
+											CC</span>
+									</p>
+								</div>
+							</div>
+						{% endif %}
 
 
+					</div>
 
-    // ouvre la fenêtre modale au click de l'avatar
-    avatarLink.onclick = function () {
-        modal.style.display = 'block';
-    };
+					<div class="customerSupport">
+						<div class="titleSection">
+							<i class="fa-solid fa-gear"></i>
+							<p>Customer support</p>
+						</div>
 
-    // ouvre la fenêtre modale au click de l'image de fond
-    imageLink.onclick = function () {
-        backgroundModal.style.display = 'block';
-    };
+						<div class="informationSection">
+							<div class="detailSection">
+								<i class="fa-regular fa-circle-question"></i>
+								{% include 'components/button.html.twig' with {'textBtn': 'See the FAQ', 'linkUrl': '#', 'title': 'See the FAQ'} %}
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-solid fa-circle-info"></i>
+								<p>If you cannot find an answer,<br>please contact us :</p>
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-solid fa-at"></i>
+								<p>Support email : support@spacetrip.com</p>
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-solid fa-phone"></i>
+								<p>Phone : +012 34 56 789</p>
+							</div>
+
+							<div class="detailSection">
+								<i class="fa-regular fa-envelope"></i>
+								<p>Post : Av. Jean Gonord 31500 Toulouse</p>
+							</div>
+							<div class="btnComponents">
+								{% include 'components/button.html.twig' with {'textBtn': 'Booking page', 'linkUrl': '/booking', 'title': 'Direction page Booking'} %}
+							</div>
+						{% endblock %}
+					</div>
+				</div>
+			</div>
+			<div id="avatarModal" class="modal">
+				<div class="modalContent ">
+					<p>Select your avatar</p>
+					<div class="avatarList">
+						<img src="{{ asset('img/Dashboard/avatar_1.jpg') }}" alt="Avatar 1" onclick="changeAvatar(this.src)">
+						<img src="{{ asset('img/Dashboard/avatar_2.jpg') }}" alt="Avatar 2" onclick="changeAvatar(this.src)">
+						<img src="{{ asset('img/Dashboard/avatar_3.jpg') }}" alt="Avatar 3" onclick="changeAvatar(this.src)">
+						<img src="{{ asset('img/Dashboard/avatar_4.jpg') }}" alt="Avatar 4" onclick="changeAvatar(this.src)">
+						<img src="{{ asset('img/Dashboard/avatar_5.jpg') }}" alt="Avatar 5" onclick="changeAvatar(this.src)">
+					</div>
+				</div>
+			</div>
+			<div id="imageModal" class="modal">
+				<div class="modalContent ">
+					<p>Select your background image</p>
+					<div class="imageList">
+						<img src="{{ asset('img/Dashboard/background_dashboard_1.jpg') }}" alt="Image 1" onclick="changeImage(this.src)">
+						<img src="{{ asset('img/Dashboard/background_dashboard_2.jpg') }}" alt="Image 2" onclick="changeImage(this.src)">
+						<img src="{{ asset('img/Dashboard/background_dashboard_3.jpg') }}" alt="Image 3" onclick="changeImage(this.src)">
+						<img src="{{ asset('img/Dashboard/background_dashboard_4.jpg') }}" alt="Image 4" onclick="changeImage(this.src)">
+						<img src="{{ asset('img/Dashboard/background_dashboard_5.jpg') }}" alt="Image 5" onclick="changeImage(this.src)">
+						<img src="{{ asset('img/Dashboard/background_dashboard_6.jpg') }}" alt="Image 6" onclick="changeImage(this.src)">
+						<img src="{{ asset('img/Dashboard/background_dashboard_7.jpg') }}" alt="Image 7" onclick="changeImage(this.src)">
+						<img src="{{ asset('img/Dashboard/background_dashboard_8.jpg') }}" alt="Image 8" onclick="changeImage(this.src)">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% block footer %}
+		{% include 'components/footer.html.twig' %}
+	{% endblock %}
+	<script>
+		// fenêtre modale
+var modal = document.getElementById('avatarModal');
+var backgroundModal = document.getElementById('imageModal');
+
+// lien img avatar
+var avatarLink = document.getElementById('avatarLink');
+var imageLink = document.getElementById('imageLink');
 
 
+// ouvre la fenêtre modale au click de l'avatar
+avatarLink.onclick = function () {
+modal.style.display = 'block';
+};
 
-    // Lorsque l'utilisateur clique n'importe où à l'extérieur de la fenêtre modale, fermez-la
-    window.onclick = function (event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-        if (event.target === backgroundModal) {
-            backgroundModal.style.display = 'none';
-        }
-    };
-
+// ouvre la fenêtre modale au click de l'image de fond
+imageLink.onclick = function () {
+backgroundModal.style.display = 'block';
+};
 
 
-    // Fonction pour changer l'avatar et ferme fenêtre après select
-    function changeAvatar(newSrc) {
-        var avatarImage = document.querySelector('#avatarLink img');
-        avatarImage.src = newSrc;
-        modal.style.display = 'none';
-    }
-
-    // Fonction pour changer l'image de fond et ferme fenêtre après select
-    function changeImage(newSrc) {
-    var backgroundImage = document.querySelector('#imageLink img');
-    backgroundImage.src = newSrc;
-
-    // Mise à jour de l'image imgDashboard
-    var dashboardImage = document.getElementById('dashboardImage');
-    dashboardImage.src = newSrc;
-
-    backgroundModal.style.display = 'none';
+// Lorsque l'utilisateur clique n'importe où à l'extérieur de la fenêtre modale, fermez-la
+window.onclick = function (event) {
+if (event.target === modal) {
+modal.style.display = 'none';
 }
-</script>
+if (event.target === backgroundModal) {
+backgroundModal.style.display = 'none';
+}
+};
 
+
+// Fonction pour changer l'avatar et ferme fenêtre après select
+function changeAvatar(newSrc) {
+var avatarImage = document.querySelector('#avatarLink img');
+avatarImage.src = newSrc;
+modal.style.display = 'none';
+}
+
+// Fonction pour changer l'image de fond et ferme fenêtre après select
+function changeImage(newSrc) {
+var backgroundImage = document.querySelector('#imageLink img');
+backgroundImage.src = newSrc;
+
+// Mise à jour de l'image imgDashboard
+var dashboardImage = document.getElementById('dashboardImage');
+dashboardImage.src = newSrc;
+
+backgroundModal.style.display = 'none';
+}
+	</script>
 {% endblock %}

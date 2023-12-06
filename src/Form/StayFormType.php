@@ -10,10 +10,12 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class StayFormType extends AbstractType
@@ -21,6 +23,20 @@ class StayFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('date_time', DateTimeType::class, [
+                'widget' => 'single_text',
+                'input' => 'datetime',
+                'required' => true,
+                'attr' => [
+                    'readonly' => true,
+                ],
+            ])
+
+
+
+
+
+
             ->add('resort', EntityType::class, [
                 'class' => Resort::class,
                 'choice_label' => function (Resort $resort) {
@@ -50,6 +66,7 @@ class StayFormType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank(),
+                    new Choice(['choices' => [1, 2, 3, 4, 5, 6]]),
                 ],
             ])
 
@@ -142,22 +159,6 @@ class StayFormType extends AbstractType
 
 
 
-            ->add('date_time', DateTimeType::class, [
-                'widget' => 'single_text',
-                'input' => 'datetime',
-                'required' => true,
-                'attr' => [
-                    'readonly' => true,
-                ],
-            ])
-
-
-
-
-
-
-
-
 
 
             ->add('extra_activities', EntityType::class, [
@@ -176,7 +177,22 @@ class StayFormType extends AbstractType
 
 
 
-            ->add('total_amount')
+
+
+
+
+            // ->add('total_amount')
+
+            ->add('total_amount', TextType::class, [
+                'attr' => [
+                    'readonly' => true,
+                    'id' => 'totalAmountStay',
+                ],
+            ])
+
+
+
+
 
 
 

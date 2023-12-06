@@ -28,10 +28,7 @@ class StayController extends AbstractController
 
     public function getStartingPrice(Resort $resort)
     {
-        // Récupérer le starting_price du resort
         $startingPrice = $resort->getStartingPrice();
-
-        // Retourner le starting_price au format JSON
         return new JsonResponse(['startingPrice' => $startingPrice]);
     }
 
@@ -86,13 +83,16 @@ class StayController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
-
             $stay->setUser($user);
 
             $this->entityManager->persist($stay);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_stay_confirmation');
+            $stayId = $stay->getId();
+
+            return $this->redirectToRoute('app_stay_confirmation', [
+                'stayId' => $stayId,
+            ]);
         }
 
         return $this->render('stay/index.html.twig', [
@@ -101,3 +101,4 @@ class StayController extends AbstractController
         ]);
     }
 }
+
