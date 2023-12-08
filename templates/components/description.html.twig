@@ -1,0 +1,78 @@
+{% block description %}
+
+
+<div class="descriptionContainer">
+
+
+	<div class="subtitlesContainer">
+		<div class="pictoAndSubtitle">
+			<div class="picto"><i class="fa-solid fa-magnifying-glass"></i></div>
+			<h3> Description</h3>
+		</div>
+		<div class="separateSubtitles"></div>
+	</div>
+
+
+	<div class="desriptionTextContainer">
+
+		{% if planet is not null %}
+		{% set sentences = planet.getDescription|split('. ') %}
+		{% set totalSentences = sentences|length %}
+		{% set sentencesPerSection = totalSentences // 4 %}
+
+		{% for i in 0..3 %}
+		<div class="descriptionText {% if i == 0 %}right{% elseif i == 3 %}right{% endif %}">
+			{% for j in (i * sentencesPerSection)..((i + 1) * sentencesPerSection - 1) %}
+			{{ sentences[j] }}.{% if j < (i + 1) * sentencesPerSection - 1 %} {% endif %} {% endfor %} </div>
+				{% if i < 3 %} <br> {% endif %}
+					{% endfor %}
+					{% else %}
+					<p>Aucune planète n'a été trouvée.</p>
+					{% endif %}
+		</div>
+
+	</div>
+
+
+
+
+	<style>
+		.descriptionContainer {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			background: linear-gradient(to top, #00071F 0%, #00071F00 20%, transparent, #00071F00 80%, #00071F 90%),
+			url('{{ asset("img/Description.jpg") }}') no-repeat center center fixed;
+			background-size: cover;
+		}
+
+		.desriptionTextContainer {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			max-width: 800px;
+			padding: 40px;
+		}
+
+		.descriptionText {
+			width: 100%;
+			max-width: 280px;
+			margin-left: 0;
+			text-align: justify;
+			background: linear-gradient(to top right, #ffffff30, #ffffff15);
+			backdrop-filter: blur(10px);
+			padding: 20px;
+			border: 1px solid #ffffff33;
+			border-radius: 3px;
+			font-size: 14px;
+		}
+
+		.descriptionText.right {
+			margin-left: auto;
+			margin-right: 0;
+		}
+	</style>
+
+	{% endblock %}

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Planet;
+use App\Entity\PlanetCharacteristics;
 use App\Entity\Resort;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,10 +19,18 @@ class HomeController extends AbstractController
         $resortRepository = $entityManager->getRepository(Resort::class);
         $resorts = $resortRepository->findAll();
 
+        $planetRepository = $entityManager->getRepository(Planet::class);
+        $planet = $planetRepository->findOneBy([]);
+
+        $planetCharacteristicsRepository = $entityManager->getRepository(PlanetCharacteristics::class);
+        $planetCharacteristics = $planetCharacteristicsRepository->findOneBy([]);
+
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'resorts' => $resorts,
+            'planet' => $planet,
+            'planetCharacteristics' => $planetCharacteristics,
 
         ]);
     }

@@ -1,0 +1,299 @@
+{% import 'components/solarSystem.html.twig' as solarSystem %}
+
+
+{% block characteristics %}
+
+
+<div class="characteristicsContainer">
+
+
+    <div class="subtitlesContainer">
+        <div class="pictoAndSubtitle">
+            <div class="picto"><i class="fa-solid fa-list"></i></div>
+            <h3> Characteristics</h3>
+        </div>
+        <div class="separateSubtitles"></div>
+    </div>
+
+
+
+
+    <div class="characteristicsCardContainer">
+
+        <div class="characteristicCardsTop">
+
+
+            <div class="characteristicCardsTopWithSolarSystem">
+                <div class="solarSystemContainer">
+                    {% block solarSystem %}
+                    {% include 'components/solarSystem.html.twig' %}
+                    {% endblock %}
+                </div>
+            </div>
+
+            <div class="characteristicCardsTopWithOutSolarSystem">
+                <div class="characteristicCard characteristicCardClimate">
+                    <h4>CLIMATE</h4>
+
+                    <div class="cardList">
+                        <i class="fa-solid fa-skull-crossbones"></i>
+                        <p><span>Main gaz</span><br>
+                            {{ planetCharacteristics.getMainGaz }}</p>
+                    </div>
+                    <div class="cardList">
+                        <i class="fa-solid fa-temperature-quarter"></i>
+                        <p><span>Temperature</span><br>
+                            {{ planetCharacteristics.getTemperature }}</p>
+                    </div>
+                    <div class="cardList">
+                        <i class="fa-solid fa-circle-notch"></i>
+                        <p><span>Gravity</span><br>
+                            {{ planetCharacteristics.getGravity }}</p>
+                    </div>
+                    <div class="cardList">
+                        <i class="fa-solid fa-sun"></i>
+                        <p><span>Irradiance</span><br>
+                            {{ planetCharacteristics.getIrradiance }}</p>
+                    </div>
+                </div>
+
+
+
+
+                <div class="characteristicCard characteristicCardAtmosphere">
+                    <h4>ATMOSPHERE COMPOSITION</h4>
+
+                    <div class="cardList">
+                        <i class="fa-solid fa-atom"></i>
+                        <p><span>Carbon dioxide</span><br>
+                            {{ planetCharacteristics.getCarbonDioxide }}</p>
+                    </div>
+                    <div class="cardList">
+                        <i class="fa-solid fa-atom"></i>
+                        <p><span>Argon</span><br>
+                            {{ planetCharacteristics.getArgon }}</p>
+                    </div>
+                    <div class="cardList">
+                        <i class="fa-solid fa-atom"></i>
+                        <p><span>Dinitrogen</span><br>
+                            {{ planetCharacteristics.getDinitrogen }}</p>
+                    </div>
+                    <div class="cardList">
+                        <i class="fa-solid fa-atom"></i>
+                        <p><span>Dioxygen</span><br>
+                            {{ planetCharacteristics.getdioxygen }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="characteristicCardsBottom">
+
+            <div class="characteristicCard characteristicCardPhysical">
+                <h4>PHYSICAL CHARACTERISTICS</h4>
+
+                <div class="cardList">
+                    <i class="fa-solid fa-list"></i>
+                    <p><span>Mass</span><br>
+                        {{ planetCharacteristics.getMass }}</p>
+                </div>
+                <div class="cardList">
+                    <i class="fa-solid fa-list"></i>
+                    <p><span>Equatorial perimeter</span><br>
+                        {{ planetCharacteristics.getEquatorialPerimeter }}</p>
+                </div>
+                <div class="cardList">
+                    <i class="fa-solid fa-list"></i>
+                    <p><span>Surface gravity</span><br>
+                        {{ planetCharacteristics.getSurfaceGravity }}</p>
+                </div>
+                <div class="cardList">
+                    <i class="fa-solid fa-list"></i>
+                    <p><span>Rotation period</span><br>
+                        {{ planetCharacteristics.getRotationPeriod }}</p>
+                </div>
+                <div class="cardList">
+                    <i class="fa-solid fa-list"></i>
+                    <p><span>Rotation speed</span><br>
+                        {{ planetCharacteristics.getRotationSpeed }}</p>
+                </div>
+                <div class="cardList">
+                    <i class="fa-solid fa-list"></i>
+                    <p><span>Solar irradiance</span><br>
+                        {{ planetCharacteristics.getSolarIrradiance }}</p>
+                </div>
+                <div class="cardList">
+                    <i class="fa-solid fa-list"></i>
+                    <p><span>Max surface temperature</span><br>
+                        {{ planetCharacteristics.getMaxSurfaceTemperature }}</p>
+                </div>
+                <div class="cardList">
+                    <i class="fa-solid fa-list"></i>
+                    <p><span>Min surface temperature</span><br>
+                        {{ planetCharacteristics.getMinSurfaceTemperature }}</p>
+                </div>
+            </div>
+
+
+
+
+            <div class="characteristicCard characteristicCardOrbital">
+                <h4>ORBITAL CHARACTERISTICS</h4>
+
+                <div class="cardList">
+                    <i class="fa-regular fa-circle-dot"></i>
+                    <p><span>Semi major axis</span><br>
+                        {{ planetCharacteristics.getSemiMajorAxis }}</p>
+                </div>
+                <div class="cardList">
+                    <i class="fa-regular fa-circle-dot"></i>
+                    <p><span>Period of revolution</span><br>
+                        {{ planetCharacteristics.getRevolutionPeriod }}</p>
+                </div>
+                <div class="cardList">
+                    <i class="fa-regular fa-circle-dot"></i>
+                    <p><span>Orbital circumference</span><br>
+                        {{ planetCharacteristics.getOrbitalCircumference }}</p>
+                </div>
+                <div class="cardList">
+                    <i class="fa-regular fa-circle-dot"></i>
+                    <p><span>Max orbital speed</span><br>
+                        {{ planetCharacteristics.getMaxOrbitalSpeed }}</p>
+                </div>
+                <p>*au = astronomic unity</p>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+<style>
+    .characteristicsContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background: linear-gradient(to top, #00071F 0%, #00071F00 20%, transparent, #00071F00 80%, #00071F 90%),
+        url('{{ asset("img/BlueMilkyWay.jpg") }}') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .characteristicsCardContainer {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 800px;
+        padding: 40px;
+        gap: 20px;
+    }
+
+    .characteristicCardsTop,
+    .characteristicCardsBottom {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .characteristicCardsBottom {
+        align-items: end;
+    }
+
+    .characteristicCardsTopWithOutSolarSystem {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    @media (max-width: 750px) {
+        .characteristicCardsTop {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .characteristicCardsTopWithOutSolarSystem {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .characteristicCardsBottom {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+    }
+
+    .characteristicCard {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        background: radial-gradient(at 50% 80%, #0059ff33 25%, #00000033 75%);
+        backdrop-filter: blur(8px);
+        border: 1px solid #0059ff;
+        border-radius: 3px;
+        box-shadow: 0px 18px 40px -10px #0059ff;
+    }
+
+    .characteristicCardClimate {
+        max-width: 200px;
+        margin-left: auto;
+    }
+
+    .characteristicCardAtmosphere {
+        max-width: 270px;
+        margin-left: auto;
+    }
+
+    .characteristicCardPhysical {
+        max-width: 280px;
+    }
+
+    .characteristicCardOrbital {
+        max-width: 280px;
+    }
+
+    .characteristicCard h4 {
+        font-weight: 800;
+        font-size: 16px;
+    }
+
+    .cardList {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .cardList i {
+        color: white;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        background: linear-gradient(to top right, #F33A00, #F3002C);
+        border-radius: 2px;
+    }
+
+    .cardList span {
+        font-weight: 800;
+    }
+</style>
+
+{% endblock %}

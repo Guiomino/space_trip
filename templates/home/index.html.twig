@@ -3,6 +3,8 @@
 {% import 'components/hero.html.twig' as hero %}
 {% import 'components/subtitles.html.twig' as subtitles %}
 {% import 'components/carouselResort.html.twig' as carouselResort %}
+{% import 'components/description.html.twig' as description %}
+{% import 'components/characteristics.html.twig' as characteristics %}
 {% import 'components/footer.html.twig' as footer %}
 
 
@@ -21,6 +23,14 @@
 
     {% block carouselResort %}
         {% include 'components/carouselResort.html.twig' with {'resorts': resorts} %}
+    {% endblock %}
+
+    {% block description %}
+        {% include 'components/description.html.twig' %}
+    {% endblock %}
+
+    {% block characteristics %}
+    {% include 'components/characteristics.html.twig' %}
     {% endblock %}
 
     {% block footer %}
