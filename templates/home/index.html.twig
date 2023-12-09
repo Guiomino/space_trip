@@ -5,6 +5,8 @@
 {% import 'components/carouselResort.html.twig' as carouselResort %}
 {% import 'components/description.html.twig' as description %}
 {% import 'components/characteristics.html.twig' as characteristics %}
+{% import 'components/extraActivities.html.twig' as extra %}
+{% import 'components/meansOfTransport.html.twig' as meansOfTransport %}
 {% import 'components/footer.html.twig' as footer %}
 
 
@@ -31,6 +33,14 @@
 
     {% block characteristics %}
     {% include 'components/characteristics.html.twig' %}
+    {% endblock %}
+
+    {% block extra %}
+    {% include 'components/extraActivities.html.twig' %}
+    {% endblock %}
+
+    {% block meansOfTransport %}
+    {% include 'components/meansOfTransport.html.twig' %}
     {% endblock %}
 
     {% block footer %}

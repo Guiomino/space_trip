@@ -39,7 +39,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/dashboard, roles: ROLE_USER }
+        - { path: ^/user/dashboard, roles: ROLE_USER }
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/booking, roles: ROLE_USER }
         - { path: ^/stay, roles: ROLE_USER }

@@ -3,14 +3,14 @@
 <div class="solarSystemContainer">
 
     <div class="sun"></div>
-    <div class="planets mercury"></div>
-    <div class="planets venus"></div>
-    <div class="planets earth"></div>
-    <div class="planets mars"></div>
-    <div class="planets jupiter"></div>
-    <div class="planets saturn"></div>
-    <div class="planets uranus"></div>
-    <div class="planets neptune"></div>
+    <div class="planets mercury"><p class="namePlanet">Mercury</p></div>
+    <div class="planets venus"><p class="namePlanet">Venus</p></div>
+    <div class="planets earth"><p class="namePlanet">Earth</p></div>
+    <div class="planets mars"><p class="namePlanet">Mars</p></div>
+    <div class="planets jupiter"><p class="namePlanet">Jupiter</p></div>
+    <div class="planets saturn"><p class="namePlanet">Saturn</p></div>
+    <div class="planets uranus"><p class="namePlanet">Uranus</p></div>
+    <div class="planets neptune"><p class="namePlanet">Neptune</p></div>
 
 </div>
 
@@ -41,6 +41,13 @@
         animation-iteration-count: infinite;
         transform-origin: 0% 50%;
         animation-timing-function: linear;
+        
+    }
+    .namePlanet {
+        font-size: 8px;
+        text-align: center;
+        margin-left: 130%;
+        margin-top: 50%;
     }
 
     .mercury {

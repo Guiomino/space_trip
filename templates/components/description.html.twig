@@ -13,7 +13,7 @@
 	</div>
 
 
-	<div class="desriptionTextContainer">
+	<div class="descriptionTextContainer">
 
 		{% if planet is not null %}
 		{% set sentences = planet.getDescription|split('. ') %}
@@ -22,6 +22,7 @@
 
 		{% for i in 0..3 %}
 		<div class="descriptionText {% if i == 0 %}right{% elseif i == 3 %}right{% endif %}">
+			<div class="descriptionNumber">{{ i + 1 }}</div>
 			{% for j in (i * sentencesPerSection)..((i + 1) * sentencesPerSection - 1) %}
 			{{ sentences[j] }}.{% if j < (i + 1) * sentencesPerSection - 1 %} {% endif %} {% endfor %} </div>
 				{% if i < 3 %} <br> {% endif %}
@@ -32,6 +33,8 @@
 		</div>
 
 	</div>
+
+
 
 
 
@@ -48,7 +51,7 @@
 			background-size: cover;
 		}
 
-		.desriptionTextContainer {
+		.descriptionTextContainer {
 			display: flex;
 			flex-direction: column;
 			width: 100%;
@@ -72,6 +75,18 @@
 		.descriptionText.right {
 			margin-left: auto;
 			margin-right: 0;
+		}
+
+		.descriptionNumber {
+			color: white;
+			width: 30px;
+			height: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-right: 10px;
+			background: linear-gradient(to top right, #F33A00, #F3002C);
+			border-radius: 2px;
 		}
 	</style>
 

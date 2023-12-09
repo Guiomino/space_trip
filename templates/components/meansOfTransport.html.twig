@@ -1,0 +1,210 @@
+{% block meansOfTransport %}
+
+
+<div class="meansOfTransportContainer">
+
+
+    <div class="subtitlesContainer">
+        <div class="pictoAndSubtitle">
+            <div class="picto"><i class="fa-solid fa-truck-monster"></i></div>
+            <h3> Means Of Transport</h3>
+        </div>
+        <div class="separateSubtitles"></div>
+    </div>
+
+
+
+
+    {% for transport in meansOfTransport %}
+    <div class="meansOfTransportCards">
+
+        <div class="meansOfTransportLeft">
+            {# <img src="#" alt="{{ transport.getImage}}"> #}
+            <img src="{{ asset('img/Vehicules/' ~ transport.getImage()) }}" alt="{{ transport.getImage}}">
+        </div>
+
+
+
+
+        <div class="meansOfTransportMiddle">
+            <div class="meansOfTransportTitle">
+                <i class="fa-solid fa-bars"></i>
+                <h3>{{ transport.getModel}}</h3>
+            </div>
+
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[0] }}</span></p>
+                <p>{{ transport.getEngineType}}</p>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[1] }}</span></p>
+                <p>{{ transport.getPowerSystem}}</p>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[2] }}</span></p>
+                <p>{{ transport.getNavigationSystem}}</p>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[3] }}</span></p>
+                <p>{{ transport.getSurvivalSystem}}</p>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[4] }}</span></p>
+                <p>{{ transport.getAntiradSystem}}</p>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[5] }}</span></p>
+                <p>{{ transport.getMaxSpeed}}</p>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="meansOfTransportRight">
+
+            <div class="meansOfTransportTitle">
+                <i class="fa-solid fa-caret-right"></i>
+                <h3>Features</h3>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[6] }}</span></p>
+                <p>{{ transport.getAutonomy}}</p>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[7] }}</span></p>
+                <p>{{ transport.getPressurization}}</p>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[8] }}</span></p>
+                <p>{{ transport.getOffRoadCapability ?? 'Not specified' }}</p>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[9] }}</span></p>
+                <p>{{ transport.getAltitude ?? 'Not specified' }}</p>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[10] }}</span></p>
+                <p>{{ transport.getUnderwaterMapSystem ?? 'Not specified' }}</p>
+            </div>
+
+            <div class="meansOfTransportInformations">
+                <p><span>{{ meansOfTransportTitle[11] }}</span></p>
+                <p>{{ transport.getCapacity}}</p>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    {% endfor %}
+
+</div>
+
+
+
+
+
+
+<style>
+    .meansOfTransportContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+        margin-bottom: 50px;
+    }
+
+    .meansOfTransportCards {
+        display: flex;
+        width: 100%;
+        max-width: 1000px;
+        background: linear-gradient(to top right, #ffffff30, #ffffff15);
+        backdrop-filter: blur(10px);
+        border: 1px solid #ffffff33;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+
+    .meansOfTransportCards i {
+        color: white;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        background: linear-gradient(to top right, #F33A00, #F3002C);
+        border-radius: 2px;
+    }
+
+    .meansOfTransportLeft {
+        width: 40%;
+    }
+
+    .meansOfTransportMiddle {
+        width: 25%;
+    }
+
+    .meansOfTransportRight {
+        width: 35%;
+    }
+
+    .meansOfTransportLeft img {
+        width: 100%;
+    }
+
+    .meansOfTransportMiddle,
+    .meansOfTransportRight {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+        gap: 10px;
+    }
+
+    .meansOfTransportTitle {
+        display: flex;
+        align-items: center;
+    }
+
+    .meansOfTransportMiddle span,
+    .meansOfTransportRight span {
+        font-weight: 900;
+    }
+
+
+    @media (max-width:950px) {
+        .meansOfTransportCards {
+            flex-direction: column;
+            width: 100%;
+            min-width: 280px;
+            max-width: 400px;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .meansOfTransportLeft,
+        .meansOfTransportMiddle,
+        .meansOfTransportRight {
+            width: 100%;
+        }
+    }
+</style>
+
+{% endblock %}

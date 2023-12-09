@@ -1,0 +1,100 @@
+{% block extra %}
+
+
+<div class="extraContainer">
+
+    <div class="subtitlesContainer">
+        <div class="pictoAndSubtitle">
+            <div class="picto"><i class="fa-solid fa-layer-group"></i></div>
+            <h3> Extra programs</h3>
+        </div>
+        <div class="separateSubtitles"></div>
+    </div>
+
+
+
+    {% for activity in extraActivities %}
+    <div class="extraContainer"
+    style="background-image: url('{{ asset('img/ExtraActivities/' ~ activity.getImage) }}'); 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    margin: 20px 0px;">
+        <div class="extraInformations {% if loop.index is odd %}right{% else %}left{% endif %}">
+            <div class="extraInformationsTitle">
+                <i class="fa-solid fa-{{ icons[loop.index0] }}"></i>
+                <h3>{{ activity.getName }}</h3>
+            </div>
+            <p>{{ activity.getDescription }}</p>
+            <p><span> > {{ activity.getPrice }} CC</span></p>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+
+</div>
+
+
+
+
+
+
+<style>
+    .extraInformations {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+        background: linear-gradient(to top right, #ffffff30, #ffffff15);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        border: 1px solid #ffffff33;
+        border-radius: 3px;
+        gap: 10px;
+        box-shadow: 0px 8px 30px #00000055;
+        text-shadow: 0px 0px 8px black;
+    }
+
+    .extraInformationsTitle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .extraInformationsTitle i {
+        color: white;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        background: linear-gradient(to top right, #F33A00, #F3002C);
+        border-radius: 2px;
+    }
+
+    .extraInformations span {
+        font-weight: 800
+    }
+
+
+    .extraInformations.right {
+        margin-left: auto;
+        margin-right: 20%;
+    }
+
+    .extraInformations.left {
+        margin-left: 20%;
+        margin-right: auto;
+    }
+</style>
+
+{% endblock %}
