@@ -1,0 +1,92 @@
+{% block precaution %}
+
+
+<div class="precautionContainer">
+
+
+	<div class="subtitlesContainer">
+		<div class="pictoAndSubtitle">
+			<div class="picto"><i class="fa-solid fa-triangle-exclamation"></i></div>
+			<h3> Precaution</h3>
+		</div>
+		<div class="separateSubtitles"></div>
+	</div>
+
+
+	<div class="precautionTextContainer">
+
+		{% if planet is not null %}
+		{% set sentences = planet.getPrecaution|split('. ') %}
+		{% set totalSentences = sentences|length %}
+		{% set sentencesPerSection = totalSentences // 5 %}
+
+		{% for i in 0..4 %}
+		<div class="precautionText {% if i == 0 %}right{% elseif i == 2 %}right{% elseif i == 4 %}right{% endif %}">
+			<div class="precautionNumber">{{ i + 1 }}</div>
+			{% for j in (i * sentencesPerSection)..((i + 1) * sentencesPerSection - 1) %}
+			{{ sentences[j] }}.{% if j < (i + 1) * sentencesPerSection - 1 %} {% endif %} {% endfor %} </div>
+				{% if i < 4 %} <br> {% endif %}
+					{% endfor %}
+					{% else %}
+					<p>Aucune planète n'a été trouvée.</p>
+					{% endif %}
+		</div>
+
+	</div>
+
+
+
+
+
+
+	<style>
+		.precautionContainer {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			background: linear-gradient(to top, #00071F 0%, #00071F00 20%, transparent, #00071F00 80%, #00071F 90%),
+			url('{{ asset("img/Precaution.jpg") }}') no-repeat center center;
+			background-size: cover;
+		}
+
+		.precautionTextContainer {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			max-width: 800px;
+			padding: 20px 0px;
+		}
+
+		.precautionText {
+			width: 100%;
+			max-width: 500px;
+			text-align: justify;
+			background: linear-gradient(to top right, #ffffff30, #ffffff15);
+			backdrop-filter: blur(10px);
+			padding: 20px;
+			border: 1px solid #ffffff33;
+			border-radius: 3px;
+			font-size: 14px;
+		}
+
+		.precautionText.right {
+			margin-left: auto;
+			margin-right: 0;
+		}
+
+		.precautionNumber {
+			color: white;
+			width: 30px;
+			height: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-right: 10px;
+			background: linear-gradient(to top right, #F33A00, #F3002C);
+			border-radius: 2px;
+		}
+	</style>
+
+	{% endblock %}

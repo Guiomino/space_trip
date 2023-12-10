@@ -1,0 +1,152 @@
+{% block pointsOfInterest %}
+
+<div class="pointsOfInterestContainer">
+
+    <div class="subtitlesContainer">
+        <div class="pictoAndSubtitle">
+            <div class="picto"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <h3> Precaution</h3>
+        </div>
+        <div class="separateSubtitles"></div>
+    </div>
+
+
+    <div class="imageContainer">
+        <img src="{{ asset("img/Mars.png") }}" alt="Image de démonstration">
+
+
+
+
+        <div class="interestPoints" style="top: 70%; left: 20%;">
+            <div class="point-of-interest">
+                <div class="tooltip tooltipBottom">Acidalia Planitia</div>
+            </div>
+        </div>
+
+        <div class="interestPoints" style="top: 60%; left: 70%;">
+            <div class="point-of-interest">
+                <div class="tooltip tooltipBottom">Vallis Marineris</div>
+            </div>
+        </div>
+
+        <div class="interestPoints" style="top: 53%; left: 82%;">
+            <div class="point-of-interest">
+                <div class="tooltip tooltipBottom">Hellas Planitia</div>
+            </div>
+        </div>
+
+        <div class="interestPoints" style="top: 40%; left: 60%;">
+            <div class="point-of-interest">
+                <div class="tooltip tooltipBottom">Valles Marineris</div>
+            </div>
+        </div>
+
+        <div class="interestPoints" style="top: 30%; left: 40%;">
+            <div class="point-of-interest">
+                <div class="tooltip tooltipBottom">Olympus Mons</div>
+            </div>
+        </div>
+
+        <div class="interestPoints" style="top: 20%; left: 50%;">
+            <div class="point-of-interest">
+                <div class="tooltip tooltipBottom">Tharsis Montes</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<style>
+    .pointsOfInterestContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background: linear-gradient(to bottom, #00071F 20%, #000000);
+        background-size: cover;
+    }
+
+    .imageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        position: relative;
+        width: 80%;
+    }
+
+    .imageContainer img {
+        width: 100%;
+        height: auto;
+    }
+
+
+    .interestPoints {
+        position: absolute;
+        z-index: 1;
+    }
+
+    .interestPoints:hover {
+        z-index: 999;
+    }
+
+    .point-of-interest {
+        z-index: 1;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: radial-gradient(#ffffffaa 33%, #ff6a0044 34%);
+        border-radius: 50%;
+        /* transform: translate(-50%, -50%); */
+        cursor: pointer;
+        border: 3px solid #ffffffaa;
+        box-shadow: 0px 0px 20px 2px #ffc67c;
+        transition: 0.3s;
+    }
+
+    .point-of-interest:hover {
+        background: radial-gradient(rgb(255, 255, 255) 33%, #ff6a0044 34%);
+        border: 3px solid rgb(255, 255, 255);
+        box-shadow: 0px 0px 20px 8px #ff9100;
+        scale: 120%;
+    }
+
+
+    .tooltip {
+        z-index: 9999;
+        position: fixed;
+        bottom: 200%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(#F3002C, #F33A00);
+        color: white;
+        font-family: sans-serif;
+        font-size: 12px;
+        padding: 20px;
+        border: 1px solid #ffffff55;
+        white-space: nowrap;
+        display: none;
+        transition: 0.3s;
+    }
+
+    .tooltipBottom::after {
+        content: "";
+        position: absolute;
+        transition: all 0.3s ease-in;
+        bottom: -20px;
+        left: calc(50% - 10px);
+        border-top: 10px solid #F33A00;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+    }
+
+    .point-of-interest:hover .tooltip {
+        display: block;
+    }
+</style>
+{% endblock %}
