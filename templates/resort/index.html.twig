@@ -9,7 +9,7 @@
 {% block body %}
 <div id="slider">
     <ul class="sliderList">
-        {% for resort in resorts %}
+        {% for resort in allResorts %}
         <li>
             <div class="resortContainer" style="background-image: url('{{ asset("img/Resorts/" ~ resort.getImage()) }}')">
 
@@ -82,31 +82,32 @@
 
 
 <script>
-    let currentIndex = 0;
+    let currentIndex = {{ selectedResortIndex ?? 0 }};
 
-function changeSlide(n) {
-    currentIndex += n;
-    showSlide();
-}
-
-function showSlide() {
-    const slides = document.querySelector('.sliderList');
-    const slideItems = slides.children;
-
-    if (currentIndex < 0) {
-        currentIndex = slideItems.length - 1;
-    } else if (currentIndex >= slideItems.length) {
-        currentIndex = 0;
+    function changeSlide(n) {
+        currentIndex += n;
+        showSlide();
     }
 
-    for (let i = 0; i < slideItems.length; i++) {
-        slideItems[i].style.display = 'none';
+    function showSlide() {
+        const slides = document.querySelector('.sliderList');
+        const slideItems = slides.children;
+
+        if (currentIndex < 0) {
+            currentIndex = slideItems.length - 1;
+        } else if (currentIndex >= slideItems.length) {
+            currentIndex = 0;
+        }
+
+        for (let i = 0; i < slideItems.length; i++) {
+            slideItems[i].style.display = 'none';
+        }
+
+        slideItems[currentIndex].style.display = 'block';
     }
 
-    slideItems[currentIndex].style.display = 'block';
-}
-
-document.addEventListener("DOMContentLoaded", showSlide);
+    document.addEventListener("DOMContentLoaded", showSlide);
 </script>
+
 
 {% endblock %}

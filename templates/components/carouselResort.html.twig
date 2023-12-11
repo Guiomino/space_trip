@@ -1,157 +1,133 @@
 {# templates/components/carouselResort.html.twig #}
 
-
-
 {% block carouselResort %}
-<div>
-    <div class="carouselResorts">
-        <div class="hideBorderRight"></div>
-        <div class="hideBorderLeft"></div>
 
-        <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
-            {% for resort in resorts %}
-            <div class="textContainer">
+<div class="resortsCardsContainer">
+
+    {% for resort in resorts %}
+    <a href="{{ path('app_resorts', {'id': resort.getId()}) }}" class="resortCard">
+        <div class="gradientOverlay">
+            <img src="{{ asset('img/Resorts/' ~ resort.getImage()) }}" draggable="false" alt="">
+            <div class="resortCardInformations">
                 <h4>{{ resort.getName() }}</h4>
                 <p>{{ resort.getPlace() }}</p>
             </div>
-            <img class="image" src="{{ asset('img/Resorts/' ~ resort.getImage()) }}" draggable="false" alt="">
-            {% endfor %}
+            <p class="Look">Look</p>
         </div>
+    </a>
+    {% endfor %}
 
-    </div>
 </div>
 
 <style>
-    /* body {
-        overflow: hidden;
-    } */
+    .resortsCardsContainer {
+        width: 100%;
+        max-width: 80%;
+        margin: 30px auto;
+        gap: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
 
-    .hideBorderRight,
-    .hideBorderLeft {
-        z-index: 9999;
-        position: absolute;
-        width: 150px;
+    .resortCard {
+        position: relative;
+        width: 100%;
+        max-width: 150px;
+        height: 300px;
+        border: 1px solid #008cfe88;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        box-shadow: 0px 8px 20px -8px #008cfe;
+        overflow: hidden;
+    }
+
+    .resortCard:hover {
+        border: 1px solid #008cfe;
+        box-shadow: 0px 8px 20px -4px #008cfe;
+    }
+
+    .gradientOverlay {
+        position: relative;
+        width: 100%;
         height: 100%;
     }
 
-    .hideBorderLeft {
-        background: linear-gradient(to right, #00071F 33%, #00071F88 66%, #00071F00 100%);
-        left: 0;
-    }
-
-    .hideBorderRight {
-        background: linear-gradient(to left, #00071F 33%, #00071F88 66%, #00071F00 100%);
-        right: 0;
-    }
-
-
-    .carouselResorts {
+    .resortCard img {
         width: 100%;
-        height: 400px;
-        position: relative;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 2px;
     }
 
-    .textContainer {
-        position: relative;
+    .resortCardInformations,
+    .Look {
+        position: absolute;
+        text-align: center;
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
         align-items: center;
+        justify-content: start;
+        width: 100%;
+        z-index: 2;
     }
 
-
-
-    .textContainer h4 {
-        margin-top: 20px;
-        left: 25px;
-        position: absolute;
-        width: 140px;
-        color: white;
-        text-shadow: 0px 0px 10px rgb(238, 67, 0);
-        text-align: center;
-        font-size: 15px;
-    }
-
-    .textContainer p {
-        margin-top: 80px;
-        left: 25px;
-        position: absolute;
-        width: 140px;
-        color: white;
-        text-shadow: 0px 0px 3px black;
-        text-align: center;
-        font-size: 12px;
-    }
-
-    #image-track {
+    .resortCardInformations {
+        top: 20%;
+        transform: translateY(-50px);
         display: flex;
-        gap: 3vmin;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(0%, -50%);
-        user-select: none;
-        /* -- Prevent image highlighting -- */
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
     }
 
-    #image-track>.image {
-        /* width: 40vmin;
-    height: 56vmin; */
-        width: 150px;
-        height: 300px;
-        object-fit: cover;
-        object-position: 100% center;
-        cursor: pointer;
-        border: 1px solid rgb(100, 100, 100);
-        border-radius: 8px;
-        box-shadow: 0px 4px 16px black;
+    .resortCardInformations h4 {
+        font-size: 16px;
+        font-weight: 800;
+        text-transform: uppercase;
+        padding: 10px;
+        text-shadow: 0px 0px 12px orange;
+    }
+
+    .resortCardInformations p {
+        font-size: 14px;
+        padding: 10px;
+        text-shadow: 0px 0px 8px rgb(0, 145, 255), 0px 0px 20px black;
+    }
+
+    .Look {
+        opacity: 0;
+        bottom: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        text-shadow: 0px 0px 8px rgb(0, 145, 255), 0px 0px 20px black;
+        transition: 0.3s;
+    }
+
+    .resortCard:hover .Look {
+        opacity: 1;
+    }
+
+    .resortCard img {
+        transition: transform 0.3s ease;
+    }
+
+    .resortCard:hover img {
+        transform: scale(1.1);
+    }
+
+    .gradientOverlay::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: linear-gradient(to top, #00071F, transparent, #00071F);
+        z-index: 1;
     }
 </style>
 
-
-
-<script>
-    const track = document.getElementById("image-track");
-    const textContainer = document.querySelector(".textContainer");
-
-    const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
-
-    const handleOnUp = () => {
-        track.dataset.mouseDownAt = "0";
-        track.dataset.prevPercentage = track.dataset.percentage;
-    }
-
-    const handleOnMove = e => {
-        if (track.dataset.mouseDownAt === "0") return;
-
-        const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
-            maxDelta = window.innerWidth / 1;
-
-        const percentage = (mouseDelta / maxDelta) * -100;
-        const nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage;
-        const nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
-
-        track.dataset.percentage = nextPercentage;
-
-        track.animate({
-            transform: `translate(${nextPercentage}%, -50%)`
-        }, { duration: 1200, fill: "forwards" });
-
-        for (const image of track.getElementsByClassName("image")) {
-            image.animate({
-                objectPosition: `${100 + nextPercentage}% center`
-            }, { duration: 1200, fill: "forwards" });
-        }
-        textContainer.style.transform = `translate(${nextPercentage}%, -50%)`;
-    }
-
-    /* -- Had to add extra lines for touch events -- */
-
-    window.onmousedown = e => handleOnDown(e);
-    window.ontouchstart = e => handleOnDown(e.touches[0]);
-    window.onmouseup = e => handleOnUp(e);
-    window.ontouchend = e => handleOnUp(e.touches[0]);
-    window.onmousemove = e => handleOnMove(e);
-    window.ontouchmove = e => handleOnMove(e.touches[0]);
-</script>
 {% endblock %}
