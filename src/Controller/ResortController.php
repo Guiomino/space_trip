@@ -31,7 +31,7 @@ class ResortController extends AbstractController
 
 
         $activitiesRepository = $entityManager->getRepository(Activities::class);
-        $activities = $activitiesRepository->findAll();
+        $activities = $selectedResort ? $activitiesRepository->findBy(['resort' => $selectedResort]) : [];
 
         return $this->render('resort/index.html.twig', [
             'controller_name' => 'ResortController',

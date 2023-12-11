@@ -2,7 +2,9 @@
 
 {% extends 'base.html.twig' %}
 {% import 'components/button.html.twig' as button %}
+{% import 'components/activities.html.twig' as activities %}
 {% import 'components/footer.html.twig' as footer %}
+
 
 {% block title %}Liste des Resorts{% endblock %}
 
@@ -14,66 +16,73 @@
             <div class="resortContainer" style="background-image: url('{{ asset("img/Resorts/" ~ resort.getImage()) }}')">
 
                 <div class="resortElementsContainer">
-                <div class="titleContainer">
-                    
-                    <div class="changeResortBtn">
-                    <button id="prevBtn" onclick="changeSlide(-1)"><i class="fas fa-caret-left"></i> Previous</button>
-                    <button id="nextBtn" onclick="changeSlide(1)">Next <i class="fas fa-caret-right"></i></button>
-                    </div>
+                    <div class="titleContainer">
 
-                    <div class="titleResort">
+                        <div class="changeResortBtn">
+                            <button id="prevBtn" onclick="changeSlide(-1)"><i class="fas fa-caret-left"></i>
+                                Previous</button>
+                            <button id="nextBtn" onclick="changeSlide(1)">Next <i
+                                    class="fas fa-caret-right"></i></button>
+                        </div>
+
+                        <div class="titleResort">
                             <div class="picto"><i class="far fa-dot-circle"></i></div>
-                            <h2 class="title">{{ resort.getName() }}</h2>
+                            <h2 class="title">{{ resort.getName() }} {{ resort.getStars() }}</h2>
 
                             {% block button %}
                             <div class="bookBtn">
-                            {% include 'components/button.html.twig' with {'textBtn': 'Book now', 'linkUrl': '/booking', 'title': 'Direction page Resorts'} %}
+                                {% include 'components/button.html.twig' with {'textBtn': 'Book now', 'linkUrl':
+                                '/booking', 'title': 'Direction page Resorts'} %}
                             </div>
                             {% endblock %}
-                    </div>
-
-                    <div class="separateResort"></div>
-                    <div class="subtitleResort">{{ resort.getDescription() }}</div>
-                </div>
-
-
-                <div class="infoContainer">
-
-                    <div class="startingPriceContainer">
-                        <div class="conversion">
-                            <p><span>Starting Price :</span></p>
-                            <p>1 CC (CrimsonCoin) = 0,125 USD</p>
-                            <p>1 USD americains = 8 CC</p>
                         </div>
 
-                        <div class="price">
-                            <p>{{ resort.getStartingPrice() }} CC</p>
-                        </div>
+                        <div class="separateResort"></div>
+                        <div class="subtitleResort">{{ resort.getDescription() }}</div>
                     </div>
 
 
-                    <div class="detailsContainer">
-                        <div class="place">
-                            <p><span>Place :</span></p>
-                            <p>{{ resort.getPlace() }}</p>
+                    <div class="infoContainer">
+
+                        <div class="startingPriceContainer">
+                            <div class="conversion">
+                                <p><span>Starting Price :</span></p>
+                                <p>1 CC (CrimsonCoin) = 0,125 USD</p>
+                                <p>1 USD americains = 8 CC</p>
+                            </div>
+
+                            <div class="price">
+                                <p>{{ resort.getStartingPrice() }} CC</p>
+                            </div>
                         </div>
-                        <div class="area">
-                            <p><span>Area :</span></p>
-                            <p>{{ resort.getArea() }}</p>
-                        </div>
-                        <div class="description">
-                            <p><span>Description :</span></p>
-                            <p>{{ resort.getDescription() }}</p>
+
+
+                        <div class="detailsContainer">
+                            <div class="place">
+                                <p><span>Place :</span></p>
+                                <p>{{ resort.getPlace() }}</p>
+                            </div>
+                            <div class="area">
+                                <p><span>Area :</span></p>
+                                <p>{{ resort.getArea() }}</p>
+                            </div>
+                            <div class="description">
+                                <p><span>Description :</span></p>
+                                <p>{{ resort.getDescription() }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
 
-</li>
-{% endfor %}
-</ul>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
+{% block activities %}
+{% include 'components/activities.html.twig' %}
+{% endblock %}
+
 {% block footer %}
 {% include 'components/footer.html.twig' %}
 {% endblock %}

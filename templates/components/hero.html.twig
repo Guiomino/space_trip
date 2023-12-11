@@ -42,8 +42,8 @@
 
     {% block button %}
     <div class="buttonHero">
-         {% include 'components/button.html.twig' with {'textBtn': 'Resorts', 'linkUrl': '/resorts', 'title': 'Direction page Resorts'} %}
-        {% include 'components/button.html.twig' with {'textBtn': 'Book now', 'linkUrl': '/booking', 'title': 'Direction page Booking'} %}
+         {% include 'components/button.html.twig' with {'textBtn': 'Resorts', 'linkUrl': path('app_resorts', {'id': resorts.0.getId()}), 'title': 'Direction page Resorts'} %}
+         {% include 'components/button.html.twig' with {'textBtn': 'Book now', 'linkUrl': '/booking', 'title': 'Direction page Booking'} %}
     </div>
     {% endblock %}
 </div>

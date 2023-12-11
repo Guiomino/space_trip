@@ -34,15 +34,22 @@ class Resort
     #[ORM\Column]
     private ?int $order_number = null;
 
+    #[ORM\Column(length: 5)]
+    private ?string $stars = null;
+
     #[ORM\Column(length: 150, nullable: true)]
     private ?string $image = null;
 
     #[ORM\OneToMany(mappedBy: 'resort', targetEntity: Stay::class)]
     private Collection $stays;
 
+    #[ORM\OneToMany(mappedBy: 'resort', targetEntity: Activities::class)]
+    private Collection $activities;
+
     public function __construct()
     {
         $this->stays = new ArrayCollection();
+        $this->activities = new ArrayCollection();
     }
 
 
@@ -123,6 +130,19 @@ class Resort
         return $this;
     }
 
+    public function getStars(): ?string
+    {
+        return $this->stars;
+    }
+
+    public function setStars(string $stars): static
+    {
+        $this->stars = $stars;
+
+        return $this;
+    }
+    
+
     public function getImage(): ?string
     {
         return $this->image;
@@ -159,6 +179,36 @@ class Resort
             // set the owning side to null (unless already changed)
             if ($stay->getResort() === $this) {
                 $stay->setResort(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Activities>
+     */
+    public function getActivities(): Collection
+    {
+        return $this->activities;
+    }
+
+    public function addActivity(Activities $activity): static
+    {
+        if (!$this->activities->contains($activity)) {
+            $this->activities->add($activity);
+            $activity->setResort($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivity(Activities $activity): static
+    {
+        if ($this->activities->removeElement($activity)) {
+            // set the owning side to null (unless already changed)
+            if ($activity->getResort() === $this) {
+                $activity->setResort(null);
             }
         }
 

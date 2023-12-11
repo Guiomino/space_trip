@@ -23,6 +23,10 @@ class Activities
     #[ORM\Column(length: 150, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'activities')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Resort $resort = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +64,18 @@ class Activities
     public function setImage(?string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getResort(): ?Resort
+    {
+        return $this->resort;
+    }
+
+    public function setResort(?Resort $resort): static
+    {
+        $this->resort = $resort;
 
         return $this;
     }
