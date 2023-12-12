@@ -27,42 +27,42 @@
             <a class="dropdown-toggle parent-link" href="{{ path('app_resorts') }}"><i class="fas fa-map-marker-alt" title="RESORTS"></i><p class="hiddenMainLink">RESORTS</p><i
                     class="fas fa-chevron-down"></i></a>
             <div class="dropdown-menu keep-open"><p>RESORTS</p> <div class="separator"></div>
-                <a href="#"><i class="far fa-dot-circle"></i>Eclipse of Marineris</a>
-                <a href="#"><i class="far fa-dot-circle"></i>Luminescent Labyrinth</a>
-                <a href="#"><i class="far fa-dot-circle"></i>Glacial Symphony</a>
-                <a href="#"><i class="far fa-dot-circle"></i>Aurora Ascendance</a>
-                <a href="#"><i class="far fa-dot-circle"></i>Echoes of Eos</i></a>
-                <a href="#"><i class="far fa-dot-circle"></i>Sands of Serenity</a>
-                <a href="#"><i class="far fa-dot-circle"></i>Nocturnal Enigma</a>
-                <a href="#"><i class="far fa-dot-circle"></i>Frost Ballet</a>
+                <a href="/resorts?id=1"><i class="far fa-dot-circle"></i>Eclipse of Marineris</a>
+                <a href="/resorts?id=2"><i class="far fa-dot-circle"></i>Luminescent Labyrinth</a>
+                <a href="/resorts?id=3"><i class="far fa-dot-circle"></i>Glacial Symphony</a>
+                <a href="/resorts?id=4"><i class="far fa-dot-circle"></i>Aurora Ascendance</a>
+                <a href="/resorts?id=5"><i class="far fa-dot-circle"></i>Echoes of Eos</i></a>
+                <a href="/resorts?id=6"><i class="far fa-dot-circle"></i>Sands of Serenity</a>
+                <a href="/resorts?id=7"><i class="far fa-dot-circle"></i>Nocturnal Enigma</a>
+                <a href="/resorts?id=8"><i class="far fa-dot-circle"></i>Frost Ballet</a>
             </div>
 
             <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-list" title="INFORMATIONS"></i><p class="hiddenMainLink">INFORMATIONS</p><i
                     class="fas fa-chevron-down"></i></a>
             <div class="dropdown-menu keep-open"><p>INFORMATIONS</p> <div class="separator"></div>
-                <a href="#"><i class="fas fa-layer-group"></i>EXTRA PROGRAMS</a>
-                <a href="#"><i class="fas fa-compass"></i>POINTS OF INTEREST</a>
-                <a href="#"><i class="fas fa-file"></i>DESCRIPTION</a>
-                <a href="#"><i class="fas fa-list-ul"></i>CHARACTERISTICS</a>
-                <a href="#"><i class="fas fa-truck-monster"></i>MEANS OF TRANSPORT</a>
-                <a href="#"><i class="fas fa-exclamation-triangle"></i>PRECAUTION</a>
+                <a href="{{ path('app_home') }}#extraContainer"><i class="fas fa-layer-group"></i>EXTRA PROGRAMS</a>
+                <a href="{{ path('app_home') }}#interestsContainer"><i class="fas fa-compass"></i>POINTS OF INTEREST</a>
+                <a href="{{ path('app_home') }}#descriptionContainer"><i class="fas fa-file"></i>DESCRIPTION</a>
+                <a href="{{ path('app_home') }}#characteristicsContainer"><i class="fas fa-list-ul"></i>CHARACTERISTICS</a>
+                <a href="{{ path('app_home') }}#transportContainer"><i class="fas fa-truck-monster"></i>MEANS OF TRANSPORT</a>
+                <a href="{{ path('app_home') }}#precautionContainer"><i class="fas fa-exclamation-triangle"></i>PRECAUTION</a>
             </div>
 
             <a class="dropdown-toggle parent-link" href="{{ path('app_booking') }}"><i class="fas fa-calendar-check" title="RESERVATION"></i><p class="hiddenMainLink">RESERVATION</p><i
                     class="fas fa-chevron-down"></i></a>
             <div class="dropdown-menu keep-open"><p>RESERVATION</p> <div class="separator"></div>
-                <a href="#"><i class="fas fa-bed"></i>TYPE OF ACCOMMODATION</a>
-                <a href="#"><i class="fas fa-dollar-sign"></i>PRICE AND PACKAGES</a>
-                <a href="#"><i class="fas fa-calendar-alt"></i>AVAILABILITY CALENDAR</a>
-                <a href="#"><i class="fas fa-clock"></i>LENGTH OF STAY</a>
+                <a href="{{ path('app_comingsoon') }}"><i class="fas fa-bed"></i>TYPE OF ACCOMMODATION</a>
+                <a href="{{ path('app_comingsoon') }}"><i class="fas fa-dollar-sign"></i>PRICE AND PACKAGES</a>
+                <a href="{{ path('app_comingsoon') }}"><i class="fas fa-calendar-alt"></i>AVAILABILITY CALENDAR</a>
+                <a href="{{ path('app_comingsoon') }}"><i class="fas fa-clock"></i>LENGTH OF STAY</a>
             </div>
 
-            <a class="parent-link no-chevron" href="#"><i class="fas fa-info-circle" title="OUR VISION"></i><p class="hiddenMainLink">OUR VISION</p></a>
-            <a class="parent-link no-chevron" href="#"><i class="fas fa-question-circle" title="FAQ"></i><p class="hiddenMainLink">FAQ</p></a>
+            <a class="parent-link no-chevron" href="{{ path('app_comingsoon') }}"><i class="fas fa-info-circle" title="OUR VISION"></i><p class="hiddenMainLink">OUR VISION</p></a>
+            <a class="parent-link no-chevron" href="{{ path('app_comingsoon') }}"><i class="fas fa-question-circle" title="FAQ"></i><p class="hiddenMainLink">FAQ</p></a>
         </div>
         <div class="separator"></div>
         <div class="secondary-menu">
-            <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-user-circle" title="USER PROFILE"></i><p class="hiddenMainLink">USER PROFILE</p><i
+            <a class="dropdown-toggle parent-link" href="{{ path('app_dashboard') }}"><i class="fas fa-user-circle" title="USER PROFILE"></i><p class="hiddenMainLink">USER PROFILE</p><i
                     class="fas fa-chevron-down"></i></a>
             <div class="dropdown-menu keep-open"><p>USER PROFILE</p> <div class="separator"></div>
                 <a href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt"></i>LOGIN</a>
@@ -71,14 +71,14 @@
                 <a href="{{ path('app_dashboard') }}"><i class="fas fa-user-plus"></i>YOUR ACCOUNT</a>
             </div>
 
-            <a class="dropdown-toggle parent-link" href="#"><i class="fas fa-share-alt" title="SOCIALE NETWORK"></i><p class="hiddenMainLink">SOCIAL NETWORK</p><i
+            <a class="dropdown-toggle parent-link" href="{{ path('app_comingsoon') }}"><i class="fas fa-share-alt" title="SOCIALE NETWORK"></i><p class="hiddenMainLink">SOCIAL NETWORK</p><i
                     class="fas fa-chevron-down"></i></a>
             <div class="dropdown-menu keep-open"><p>SOCIAL NETWORK</p> <div class="separator"></div>
-                <a href="#"><i class="fab fa-youtube"></i>YOUTUBE</a>
-                <a href="#"><i class="fab fa-instagram"></i>INSTAGRAM</a>
-                <a href="#"><i class="fab fa-facebook"></i>FACEBOOK</a>
-                <a href="#"><i class="fab fa-reddit"></i>REDDIT</a>
-                <a href="#"><i class="fab fa-twitter"></i>TWITTER</a>
+                <a href="{{ path('app_comingsoon') }}"><i class="fab fa-youtube"></i>YOUTUBE</a>
+                <a href="{{ path('app_comingsoon') }}"><i class="fab fa-instagram"></i>INSTAGRAM</a>
+                <a href="{{ path('app_comingsoon') }}"><i class="fab fa-facebook"></i>FACEBOOK</a>
+                <a href="{{ path('app_comingsoon') }}"><i class="fab fa-reddit"></i>REDDIT</a>
+                <a href="{{ path('app_comingsoon') }}"><i class="fab fa-twitter"></i>TWITTER</a>
             </div>
         </div>
     </nav>

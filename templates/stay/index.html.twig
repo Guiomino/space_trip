@@ -27,7 +27,10 @@
         <div class="resortLineContainerLeft">
             {{ form_row(form.resort) }}
             {{ form_row(form.number_of_travelers) }}
-     
+        <div class="btnComponent">
+            {% block button %}
+            {% include 'components/button.html.twig' with {'textBtn': 'See resorts', 'linkUrl': '/resorts', 'title': 'Direction page Resorts'} %}
+        </div>
         </div>
 
         <div class="resortLineContainerRight">
@@ -53,6 +56,10 @@
     <div class="accommodationLineContainer">
         <div class="accommodationLineContainerLeft">
             {{ form_row(form.accommodation) }}
+            <div class="btnComponent">
+                {% include 'components/button.html.twig' with {'textBtn': 'See accommodations', 'linkUrl': '/accommodation/form', 'title': 'Direction page Accommodations'} %}
+                {% endblock %}
+            </div>
         </div>
 
         <div class="accommodationLineContainerRight">

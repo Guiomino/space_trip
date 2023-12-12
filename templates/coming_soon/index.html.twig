@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% import 'components/button.html.twig' as button %}
+
+{% block title %}Coming Soon{% endblock %}
+
+
+{% block body %}
+
+<div class="comingSoonContainer">
+
+    <h1>Coming Soon</h1>
+
+    {% block button %}
+    <div class="buttonHero">
+         {% include 'components/button.html.twig' with {'textBtn': 'Home page', 'linkUrl': '/', 'title': 'Direction main page'} %}
+    </div>
+    {% endblock %}
+    
+</div>
+
+<style>
+    .comingSoonContainer {
+        background: linear-gradient(to top, #00071F 0%, #00071F00 20%, transparent, #00071F00 80%, #00071F 90%),
+        url('{{ asset("img/comingSoonBackground.jpg") }}') no-repeat center center fixed;
+        background-size: cover;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin: auto;
+    }
+
+    .comingSoonContainer h1 {
+        text-shadow: 0px 0px 12px orange;
+    }
+</style>
+{% endblock %}
