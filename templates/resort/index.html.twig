@@ -13,7 +13,7 @@
     <ul class="sliderList">
         {% for resort in allResorts %}
         <li>
-            <div class="resortContainer" style="background-image: url('{{ asset("img/Resorts/" ~ resort.getImage()) }}')">
+            <div data-resort-id={{ resort.id }} class="resortContainer" style="background-image: url('{{ asset("img/Resorts/" ~ resort.getImage()) }}')">
 
                 <div class="resortElementsContainer">
                     <div class="titleContainer">
@@ -88,8 +88,6 @@
 {% endblock %}
 
 
-
-
 <script>
     let currentIndex = {{ selectedResortIndex ?? 0 }};
 
@@ -101,7 +99,10 @@
     function showSlide() {
         const slides = document.querySelector('.sliderList');
         const slideItems = slides.children;
+        const slidesActivities = document.querySelectorAll('.activitiesContainer');
+        const slidesActivitiesItems = slidesActivities[0].children 
 
+        // Gestion des resorts
         if (currentIndex < 0) {
             currentIndex = slideItems.length - 1;
         } else if (currentIndex >= slideItems.length) {
@@ -113,6 +114,21 @@
         }
 
         slideItems[currentIndex].style.display = 'block';
+
+        // Gestion des activités liées au resort
+        for (let o = 0; o < slidesActivitiesItems.length; o++) {
+            if (o !== 0) {
+                const currentResortId = slideItems[currentIndex].children[0].attributes[0].value
+                const activityRelatedResort = slidesActivitiesItems[o].attributes[0].value
+
+                if (activityRelatedResort !== currentResortId) {
+                    console.log()
+                    slidesActivitiesItems[o].style.display = "none"
+                } else {
+                    slidesActivitiesItems[o].style.display = "flex"
+                }
+            }
+        }
     }
 
     document.addEventListener("DOMContentLoaded", showSlide);

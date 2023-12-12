@@ -66,7 +66,6 @@ class HomeController extends AbstractController
             'icons' => $icons,
             'meansOfTransport' => $meansOfTransport,
             'meansOfTransportTitle' => $meansOfTransportTitle,
-
         ]);
     }
 }
